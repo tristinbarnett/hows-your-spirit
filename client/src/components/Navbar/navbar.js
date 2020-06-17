@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
 // Local
-import Logo from "../../assets/Books-icon.png";
+import Logo from "../../assets/HYS-logo-sm.png";
 
 // Export function
 function NavMenu() {
@@ -15,13 +15,13 @@ function NavMenu() {
 					<img
 						alt="logo"
 						src={Logo}
-						width="30"
+						width="100"
 						className="d-inline-block mr-2"
 					/>
-					HYS?
+
 				</Navbar.Brand>
 				<Nav className="mr-auto">
-					<Nav.Link href="/add">Add Entry</Nav.Link>
+					<Nav.Link href="/add">New Entry</Nav.Link>
 					<Nav.Link href="/review">Review</Nav.Link>
 					<Nav.Link href="/learn">Learn</Nav.Link>
 					{/* Do we need logout? What is our route? */}
