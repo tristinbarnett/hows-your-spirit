@@ -1,6 +1,6 @@
 // Global
 import React, { useState } from "react";
-import { Button } from 'reactstrap';
+import { Button } from 'react-bootstrap';
 import BtmLogo from "../assets/HYS-logo-lg.png";
 // Page Content
 function Learn() {
