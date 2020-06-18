@@ -8,4 +8,7 @@ export default {
 
 	// new user signup
 	signup: (userData) => axios.post("/auth/", userData),
+
+	// get entries by criteria
+	getEntries: (criteria) => axios.get("/?", criteria)
 };
