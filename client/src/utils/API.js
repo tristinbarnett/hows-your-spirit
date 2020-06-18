@@ -4,7 +4,8 @@ import axios from "axios";
 // API functions
 export default {
 	// existing user login
-	login: (userData) => axios.get("/auth/", userData),
+	//changed to post to send data
+	login: (userData) => axios.post("/auth/", userData),
 
 	// new user signup
 	signup: (userData) => axios.post("/auth/", userData),
