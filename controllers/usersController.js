@@ -3,14 +3,14 @@ const db = require("../models");
 module.exports = {
   findUserByEmail: function (req, res) {
     db.Users
-      .find({ email: req.body.email })
+      .find({ email: req.query.email })
       .then(response => {
-        console.log("req" +req.body.password);
+        console.log("req" +req.query.password);
         console.log("res" + response[0].password);
-        if (req.body.password === response.password) {
+        if (req.query.password === response[0].password) {
           res.json(response)
         } else {
-          res.json("invalid password")
+          res.status(422).json(err)
         }
       })
       .catch(err => res.status(422).json(err));

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
 
 router.route("/auth")
-  .post(usersController.findUserByEmail)
+  .get(usersController.findUserByEmail)
   .post(usersController.create);
 
 

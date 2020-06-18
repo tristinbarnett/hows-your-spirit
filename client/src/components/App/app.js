@@ -15,9 +15,10 @@ import Oops from "../../pages/oops";
 // Export
 function App() {
 	// set page with no authentication
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [ isAuthenticated, setIsAuthenticated ] = useState(false);
+	console.log("logged in?", isAuthenticated);
 	// set page with no user
-	const [user, setUser] = useState({});
+	const [ user, setUser ] = useState({});
 
 	const handleUser = (userData) => {
 		console.log("currentuser: ", userData);
@@ -34,27 +35,27 @@ function App() {
 					</Route>
 				</Router>
 			) : (
-				<Router>
-					<Navbar />
-					<Switch>
-						<Route exact path={["/", "/hows-your-spirit", "/home"]}>
-							<Home user={user} />
-						</Route>
-						<Route path="/add">
-							<Add user={user} />
-						</Route>
-						<Route path="/review">
-							<Review user={user} />
-						</Route>
-						<Route path="/learn">
-							<Learn />
-						</Route>
-						<Route>
-							<Oops />
-						</Route>
-					</Switch>
-				</Router>
-			)}
+					<Router>
+						<Navbar />
+						<Switch>
+							<Route exact path={[ "/", "/hows-your-spirit", "/home" ]}>
+								<Home user={user} />
+							</Route>
+							<Route path="/add">
+								<Add user={user} />
+							</Route>
+							<Route path="/review">
+								<Review user={user} />
+							</Route>
+							<Route path="/learn">
+								<Learn />
+							</Route>
+							<Route>
+								<Oops />
+							</Route>
+						</Switch>
+					</Router>
+				)}
 		</>
 	);
 }
