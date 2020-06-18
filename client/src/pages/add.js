@@ -1,7 +1,7 @@
 // Global
 import React, { useState } from "react";
-import './pageStyle.css';
-import { Button } from 'reactstrap';
+import '../components/App/app.css';
+import { Button } from 'react-bootstrap';
 import BtmLogo from "../assets/HYS-logo-lg.png";
 
 // Local
