@@ -15,7 +15,7 @@ import Oops from "../../pages/oops";
 // Export
 function App() {
 	// set page with no authentication
-	const [ isAuthenticated, setIsAuthenticated ] = useState(true);
+	const [ isAuthenticated, setIsAuthenticated ] = useState(false);
 	console.log("logged in?", isAuthenticated);
 	// set page with no user
 	const [ user, setUser ] = useState({});
