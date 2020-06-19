@@ -31,7 +31,7 @@ function NavMenu({ logoutUser }) {
 				</Navbar.Brand>
 				{isHome ? (
 					<Nav className="ml-auto">
-						<Nav.Link href="/">Logout</Nav.Link>
+						<Nav.Link onClick={logoutUser}>Logout</Nav.Link>
 					</Nav>
 				) : (
 					<Nav className="ml-auto">
