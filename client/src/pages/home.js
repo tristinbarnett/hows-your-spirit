@@ -1,6 +1,6 @@
 // Global
 import React, { useState, useEffect } from "react";
-import './pageStyle.css';
+import '../components/App/app.css';
 import { Button } from 'react-bootstrap';
 
 // Local
@@ -74,30 +74,25 @@ function Home() {
 					<br />
 					<span><h3 style={{ color: '#007bff' }}>This Week:</h3></span>
 				</div>
+				<br/>
 				<div class="container">
 					{/* headings populated with descriptors from useState */}
 					<h1 style={{ color: '#FFC300', textAlign: 'center' }}>Mood is {thisWeek.positivity}</h1>
-					<h1 style={{ color: '#FFC300', textAlign: 'center' }}>Energy is {thisWeek.energy}</h1>
+					<br/>
+					<h1 style={{ color: '#BFE2FF', textAlign: 'center' }}>Energy is {thisWeek.energy}</h1>
 					<br />
 					{/* OR headings populated with percentages from useState */}
-					<h1 style={{ color: '#FFC300', textAlign: 'center' }}>{thisWeek.positivityPercent}</h1>
+					{/*<h1 style={{ color: '#FFC300', textAlign: 'center' }}>{thisWeek.positivityPercent}</h1>
 					<h1 style={{ color: '#FFC300', textAlign: 'center' }}>{thisWeek.energyPercent}</h1>
-					<br />
+					<br />*/}
 				</div>
+				<br/>
 				<div class="container">
 					<Button color="primary" size="lg" block href="/add">New entry</Button>
 					<Button outline color="primary" size="lg" block href="/review">Review past entries</Button>
 					<Button color="primary" size="lg" block href="/learn">Learn More</Button>
 				</div>
-				<div class="container" style={{ textAlign: "center", alignContent: "center" }}>
-					<br />
-					<img
-						alt="logo"
-						src={BtmLogo}
-						width="200"
-						className="d-inline-block mr-2"
-					/>
-				</div>
+				
 				<br />
 			</div>
 		</body>
