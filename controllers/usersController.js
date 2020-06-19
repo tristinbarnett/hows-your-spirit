@@ -5,7 +5,7 @@ module.exports = {
     db.Users
       .find({ email: req.query.email })
       .then(response => {
-        console.log("req" +req.query.password);
+        console.log("req" + req.query.password);
         console.log("res" + response[0].password);
         if (req.query.password === response[0].password) {
           res.json(response)
@@ -27,7 +27,7 @@ module.exports = {
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
+  }
   // update: function(req, res) {
   //   db.Users
   //     .findOneAndUpdate({ _id: req.params.id }, req.body)
