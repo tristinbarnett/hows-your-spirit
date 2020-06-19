@@ -7,7 +7,7 @@ import { Button, ButtonGroup, Card, Row, Col } from 'react-bootstrap';
 // Local
 import API from "../utils/API";
 import User from "../components/User";
-
+import Logo from "../assets/HYS-logo-lg.png";
 // Page Content
 function Login({ authUser }) {
 	// start page with login form
@@ -54,7 +54,9 @@ function Login({ authUser }) {
 	};
 
 	return (
-		<div class="flexbox-container" style={{ backgroundColor: 'white' }}>
+		<body style={{ backgroundColor: '#BFE2FF' }}>
+			<div class="flexbox-container" style={{ backgroundColor: 'white' }}>
+				<br/>
 			<div class="flexbox-container">
 				<ButtonGroup>
 					<Button variant="outline-primary" size="lg" value="login" onClick={handleButtons}>Login</Button>
@@ -65,8 +67,12 @@ function Login({ authUser }) {
 			{(() => {
 				switch (formName) {
 					case "login":
-						return <div>
-							<h2>Login to your account:</h2>
+						return <div class="container" style={{margin: "5px"}}>
+							<div class="container" style={{alignContent: "center", textAlign: "center"}}>
+							<br/><br/><br/><br/>
+							<img src={ Logo } />
+							</div><br/>
+							<h2 style={{color: '#BFE2FF'}}>Login to your account:</h2><br/>
 							{loginError ? (
 								<Alert>
 									Your information could not be verified. Please try again.
@@ -75,17 +81,38 @@ function Login({ authUser }) {
 									<></>
 								)}
 							<User name={formName} submitUser={handleSubmitUser} />
+							<br/><br/><br/>
 						</div>;
 					case "signup":
-						return <div>
-							<h2>Sign up for an account:</h2>
+						return <div class="container" style={{margin: "5px"}}>
+							<div class="container" style={{alignContent: "center", textAlign: "center"}}>
+							<br/><br/><br/><br/>
+							<img src={ Logo } />
+							</div><br/>
+							<h2 style={{color: "#FFC300"}}>Sign up for an account:</h2>
+							<br/>
 							<User name={formName} submitUser={handleSubmitUser} />
+							<br/><br/><br/>
 						</div>;
 					default:
-						return <div>inspirational quote</div>;
+						return <div class="container" style={{margin: "5px"}}>
+							<div class="container" style={{alignContent: "center", textAlign: "center"}}>
+							<br/><br/><br/><br/>
+							<img src={ Logo } />
+							</div>
+							<br/>
+							<div style={{textAlign: "center", margin: "5px"}}>
+							
+							<h2 style={{color: '#BFE2FF'}}><em>"Hour by hour resolve firmly to do what comes to hand with dignity, and with humanity, independence, and justice."</em></h2>
+							<br/>
+							<h3 style={{color: "#FFC300"}}>Marcus Aurelius</h3>
+							</div>
+							<br/><br/><br/>
+							</div>;
 				}
 			})()}
 		</div>
+		</body>
 	);
 }
 export default Login;
