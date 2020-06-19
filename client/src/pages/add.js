@@ -10,6 +10,12 @@ import EnterActivity from "../components/EnterActivity";
 
 // Page Content
 function Add() {
+	// set up emotion states
+	const [emotion, setEmotion] = useState("");
+	// change view on button click
+	const handleButtons = (event) => {
+		setEmotion(event.target.value);
+	};
 	return (
 		<body style={{ backgroundColor: '#BFE2FF' }}>
 			<div class="flexbox-container" style={{ backgroundColor: 'white' }}>
