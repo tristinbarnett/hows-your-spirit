@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
 import BarGraph from "../../assets/stacked-bar.png";
 import EmotionMap from "../../utils/EmotionMap";
+import Chart from "react-google-charts";
 
 // Export function
 function ViewActivity({ entries }) {
@@ -25,75 +26,35 @@ function ViewActivity({ entries }) {
 
 	return (
 		<div>
-			<div class="container">
-				<Row>
-					<Col>
-						<h3 style={{ color: "#FFC300", float: "left", marginLeft: "20px" }}>
-							MOOD
-						</h3>
-					</Col>
-					<Col>
-						<h3
-							style={{
-								color: "#007bff",
-								float: "right",
-								position: "relative",
-								marginRight: "20px",
-							}}>
-							ENERGY
-						</h3>
-					</Col>
-				</Row>
-				<br />
-			</div>
-			<div
-				class="image-container"
-				style={{ textAlign: "center", alignContent: "center" }}>
-				<img
-					alt="logo"
-					src={BarGraph}
-					width="350"
-					className="d-inline-block mr-2"
-					style={{ marginLeft: "20px" }}
-				/>
-			</div>
-			<br />
-			<div class="container" style={{ paddingBottom: "15px" }}>
-				<Row>
-					<Col>
-						<p style={{ color: "#FFC300", float: "left", marginLeft: "25px" }}>
-							Alcohol
-						</p>
-					</Col>
-					<Col>
-						<p
-							style={{
-								color: "#007bff",
-								float: "left",
-								position: "relative",
-								marginLeft: "25px",
-							}}>
-							Diet
-						</p>
-					</Col>
-					<Col>
-						<p style={{ color: "#FFC300", float: "left", marginRight: "25px" }}>
-							Exercise
-						</p>
-					</Col>
-					<Col>
-						<p
-							style={{
-								color: "#007bff",
-								float: "right",
-								position: "relative",
-								marginRight: "25px",
-							}}>
-							Sleep
-						</p>
-					</Col>
-				</Row>
-			</div>
+		<div style={{ display: 'flex', maxWidth: 500 }}> {/*Adding in area chart*/}
+		<Chart
+			width={360}
+			height={270}
+			chartType="ColumnChart"
+			loader={<div>Loading Chart</div>}
+			data={[
+			['Activity', 'Mood', 'Energy'],
+			['Overall', 1, -2],
+			['Alcohol', 1, -2],
+			['Diet', 2, 1],
+			['Exercise', 2, 1],
+			['Sleep', 2, 2],
+			]}
+			options={{
+			title: 'Mood & Energy by Activity',
+			chartArea: { width: '50%' },
+			colors: ["#FFC300", "#BFE2FF"],
+			hAxis: {
+				title: 'Activities',
+				minValue: 0,
+			},
+			vAxis: {
+				title: 'Level',
+			},
+			}}
+			legendToggle
+			/>
+				</div>
 			<div class="container">
 				<h1 style={{ color: "#BFE2FF", textAlign: "center" }}>
 					<em>
