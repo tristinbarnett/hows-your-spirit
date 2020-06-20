@@ -5,15 +5,19 @@ import axios from "axios";
 export default {
 	// existing user login
 	//changed to post to send data
-	login: (userData) => axios.get("/auth/", {
-        params: {
-            email: userData.email,
-            password: userData.password
-        }
-    }),
+	login: (userData) =>
+		axios.get("/auth/", {
+			params: {
+				email: userData.email,
+				password: userData.password,
+			},
+		}),
 	// new user signup
 	signup: (userData) => axios.post("/auth/", userData),
 
 	// get entries by criteria
-	getEntries: (criteria) => axios.get("/?", criteria)
+	createEntry: (user, entryData) => axios.post("/entries", { user: user, entry: entryData }),
+
+	// get entries by criteria
+	getEntries: () => axios.get("/entries"),
 };
