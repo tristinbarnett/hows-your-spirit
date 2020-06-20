@@ -27,7 +27,7 @@ function App() {
 
 	// handle user login
 	const handleUser = (userData) => {
-		let currentUser = userData.data[0];
+		let currentUser = userData.data;
 		console.log("currentuser: ", currentUser);
 		setUser(currentUser);
 		localStorage.setItem("user", JSON.stringify(currentUser));

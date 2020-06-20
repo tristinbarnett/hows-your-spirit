@@ -57,15 +57,27 @@ const weights = [
 ];
 
 // daily activities as factors
-const factors = ["exercise", "get 8 hours of sleep", "drink alcohol"];
+const factors = ["Eat healthy meals", "Exercise at least 30 minutes", "Get at least 8 hours of sleep", "Drink alcohol"];
 
 const emotionMap = {
+	// get data for creating entries
+	map: () => {
+		const activities = factors.map((factor) => {
+			return { activity: factor, state: false };
+		});
+		return { feelings: feelings, durations: weights, activities: activities };
+	},
+
 	// get emotion from x and y values
 	emotion: (x, y) => {
-		const feeling = feelings.find(
-			(feeling) => x === feeling.x && y === feeling.y
-		);
+		const feeling = feelings.find((feeling) => x === feeling.x && y === feeling.y);
 		return feeling.emotion;
+	},
+
+	// get x and y values from emotion
+	feeling: (emotion) => {
+		const values = feelings.find((feeling) => emotion === feeling.emotion);
+		return values;
 	},
 
 	// get descriptor for weight
@@ -81,12 +93,8 @@ const emotionMap = {
 
 	// get descriptors
 	descriptors: (emotionData) => {
-		const emotionPositivity = positivity.find(
-			(item) => item.x === Math.round(emotionData.x)
-		);
-		const emotionEnergy = energy.find(
-			(item) => item.y === Math.round(emotionData.y)
-		);
+		const emotionPositivity = positivity.find((item) => item.x === Math.round(emotionData.x));
+		const emotionEnergy = energy.find((item) => item.y === Math.round(emotionData.y));
 		return {
 			positivity: emotionPositivity.descriptor,
 			energy: emotionEnergy.descriptor,
@@ -119,15 +127,10 @@ const emotionMap = {
 	compare: (limitedEntries, allEntries) => {
 		const changedAverage = emotionMap.average(limitedEntries);
 		const overallAverage = emotionMap.average(allEntries);
-		console.log("limited, overall: ", changedAverage, overallAverage);
 
 		// calculate using "percentage change"
-		const percentChangeX = Math.round(
-			((changedAverage.x - overallAverage.x) * 100) / overallAverage.x
-		);
-		const percentChangeY = Math.round(
-			((changedAverage.y - overallAverage.y) * 100) / overallAverage.y
-		);
+		const percentChangeX = Math.round(((changedAverage.x - overallAverage.x) * 100) / overallAverage.x);
+		const percentChangeY = Math.round(((changedAverage.y - overallAverage.y) * 100) / overallAverage.y);
 		// return average x and y percentages
 		return { x: percentChangeX, y: percentChangeY };
 	},
@@ -135,15 +138,9 @@ const emotionMap = {
 	// helper function to get percentages
 	percentages: (emotionObject) => {
 		const positivity = Math.round(emotionObject.x * 50);
-		const percentPositive =
-			positivity >= 0
-				? `${positivity}% ${positivityChange.increase}`
-				: `${Math.abs(positivity)}% ${positivityChange.decrease}`;
+		const percentPositive = positivity >= 0 ? `${positivity}% ${positivityChange.increase}` : `${Math.abs(positivity)}% ${positivityChange.decrease}`;
 		const energy = Math.round(emotionObject.y * 50);
-		const percentEnergy =
-			positivity >= 0
-				? `${energy}% ${energyChange.increase}`
-				: `${Math.abs(energy)}% ${energyChange.decrease}`;
+		const percentEnergy = positivity >= 0 ? `${energy}% ${energyChange.increase}` : `${Math.abs(energy)}% ${energyChange.decrease}`;
 		return { positivity: percentPositive, energy: percentEnergy };
 	},
 
@@ -163,7 +160,6 @@ const emotionMap = {
 			x: xGrowth / (entries.length - 1),
 			y: yGrowth / (entries.length - 1),
 		});
-		console.log("growth%: ", growthPercentages);
 		return growthPercentages;
 	},
 
@@ -173,14 +169,8 @@ const emotionMap = {
 		// run comparison
 		const comparison = emotionMap.compare(filtered, entries);
 		// translate numbers to descriptors
-		const positivityEffect =
-			comparison.x >= 0
-				? `${comparison.x}% ${positivityChange.increase}`
-				: `${Math.abs(comparison.x)}% ${positivityChange.decrease}`;
-		const energyEffect =
-			comparison.y >= 0
-				? `${comparison.y}% ${energyChange.increase}`
-				: `${Math.abs(comparison.y)}% ${energyChange.decrease}`;
+		const positivityEffect = comparison.x >= 0 ? `${comparison.x}% ${positivityChange.increase}` : `${Math.abs(comparison.x)}% ${positivityChange.decrease}`;
+		const energyEffect = comparison.y >= 0 ? `${comparison.y}% ${energyChange.increase}` : `${Math.abs(comparison.y)}% ${energyChange.decrease}`;
 		return { positivity: positivityEffect, energy: energyEffect };
 	},
 };
