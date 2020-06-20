@@ -5,10 +5,9 @@ module.exports = {
     db.Users
       .find({ email: req.query.email })
       .then(response => {
-        console.log("req" + req.query.password);
-        console.log("res" + response[0].password);
+        console.log("res" + response[0]._id);
         if (req.query.password === response[0].password) {
-          res.json(response)
+          res.json(response[0]._id) //send back id
         } else {
           res.status(422).json(err)
         }
@@ -23,10 +22,18 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // }
   create: function (req, res) {
-    db.Users
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    db.Users //check if user already exists
+    .findOne({email: req.body.email}, function (err, user){ 
+      if(user){
+        return err
+      } else {
+        db.Users.create(req.body)
+        .then(dbModel => res.json(dbModel._id))
+        .catch(err => res.status(422).json(err));
+      }
+  }); 
+       //send back id
+      
   }
   // update: function(req, res) {
   //   db.Users
