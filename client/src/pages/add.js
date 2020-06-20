@@ -17,11 +17,19 @@ function Add() {
 	const [entryStatus, setEntryStatus] = useState("addEmotion");
 	// set entry data
 	const [entryData, setEntryData] = useState({ date: moment().format("MMMM Do YYYY"), emotions: [], factors: [] });
-
+	// get emotionMap for entries
 	const entriesMap = EmotionMap.map();
+
+	// submit entry when complete
+	useEffect(() => {
+		if (entryStatus === "complete") {
+			submitEntry();
+		}
+	}, [entryData]);
 
 	// handle submit buttons
 	const handleSubmit = (data, submitType) => {
+		setEntryStatus(submitType);
 		switch (submitType) {
 			case "addEmotion":
 			case "completeEmotion":
@@ -33,18 +41,17 @@ function Add() {
 				}
 				break;
 			case "complete":
-				setEntryData({ ...entryData, factors: data }, submitEntry());
+				setEntryData({ ...entryData, factors: data });
+				// setEntryData({ ...entryData, factors: data }, submitEntry());
 				break;
 			default:
 				console.log("oops: ", submitType);
 		}
-		setEntryStatus(submitType);
 	};
 
 	// submit to database
 	const submitEntry = () => {
 		let localUser = localStorage.getItem("user");
-		console.log("entry: ", localUser, entryData);
 		API.createEntry(localUser, entryData)
 			.then((res) => {
 				console.log("results: ", res);
