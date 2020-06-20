@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../components/App/app.css";
 import { Button, ButtonGroup, Form } from "react-bootstrap";
 import BtmLogo from "../assets/HYS-logo-lg.png";
+import moment from "moment";
 
 // Local
 import API from "../utils/API";
@@ -15,7 +16,7 @@ function Add() {
 	// set current entry state
 	const [entryStatus, setEntryStatus] = useState("addEmotion");
 	// set entry data
-	const [entryData, setEntryData] = useState({ date: new Date(), emotions: [], factors: [] });
+	const [entryData, setEntryData] = useState({ date: moment().format("MMMM Do YYYY"), emotions: [], factors: [] });
 
 	const entriesMap = EmotionMap.map();
 
@@ -32,8 +33,7 @@ function Add() {
 				}
 				break;
 			case "complete":
-				setEntryData({ ...entryData, factors: data });
-				submitEntry();
+				setEntryData({ ...entryData, factors: data }, submitEntry());
 				break;
 			default:
 				console.log("oops: ", submitType);
@@ -43,8 +43,9 @@ function Add() {
 
 	// submit to database
 	const submitEntry = () => {
-		console.log("entryData: ", entryData);
-		API.createEntry(entryData)
+		let localUser = localStorage.getItem("user");
+		console.log("entry: ", localUser, entryData);
+		API.createEntry(localUser, entryData)
 			.then((res) => {
 				console.log("results: ", res);
 			})
