@@ -14,3 +14,13 @@
     margin-bottom: 5px;
 
 }
+.chart-container {
+    
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 0px;
+    margin-right: 20px;
+    
+
+}
