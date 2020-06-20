@@ -2,7 +2,7 @@
 import React from "react";
 import Graph from "../../assets/graph.png";
 import EmotionMap from "../../utils/EmotionMap";
-
+import Chart from "react-google-charts";
 // Export function
 function ViewTime({ entries }) {
 	// get growth trend of data
@@ -12,17 +12,35 @@ function ViewTime({ entries }) {
 	};
 
 	return (
-		<body style={{ backgroundColor: "#BFE2FF" }}>
-			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
-				<div
-					class="image-container"
-					style={{ textAlign: "center", alignContent: "center" }}>
-					<img
-						alt="logo"
-						src={Graph}
-						width="350"
-						className="d-inline-block mr-2"
-					/>
+		
+			<div>
+				<div style={{ display: 'flex', maxWidth: 500 }}> {/*Adding in area chart*/}
+				<Chart
+				width={'350px'}
+				height={'210px'}
+				chartType="AreaChart"
+				loader={<div>Loading Chart</div>}
+				data={[
+					['Day', 'Mood', 'Energy'],
+					['6-1-20', -2, -1],
+					['6-2-20', -1, 1],
+					['6-3-20', 0, 1],
+					['6-4-20', 1, 2],
+					['6-5-20', 2, 1],
+				]}
+				options={{
+					title: 'Mood & Energy Over Time',
+					hAxis: { title: 'Days', titleTextStyle: { color: '#333' } },
+					vAxis: { minValue: 0 },
+					// For the legend to fit, we make the chart area smaller
+					chartArea: { width: '60%', height: '70%' },
+					// lineWidth: 25
+					colors: ["#FFC300", "#BFE2FF"],
+				}}
+				legendToggle
+				// For tests
+				rootProps={{ 'data-testid': '1' }}
+				/>
 				</div>
 				<br />
 
@@ -42,7 +60,7 @@ function ViewTime({ entries }) {
 					<h3>Log a few more entries to see trends!</h3>
 				)}
 			</div>
-		</body>
+		
 	);
 }
 
