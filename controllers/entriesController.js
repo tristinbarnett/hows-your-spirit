@@ -1,12 +1,13 @@
 const db = require("../models");
 
 module.exports = {
-    create: function (req, res) {
+    create: function ({body}, res) {
         db.Entries
-          .create(req.body)
-          //.then(({ _id }) => db.Users.findOneAndUpdate({_id}, { $push: { entries: _id } }, { new: true }))
-          .then(entries => {
-            console.log(entries);
+          .create(body.entry)
+          .then(_id => db.Users.findOneAndUpdate({}, { $push: { entries : _id } }, { new: true }))
+          .then(updatedUser => {
+            console.log(updatedUser);
+            res.json(updatedUser);
           })
           .catch(err => {
             res.json(err);
