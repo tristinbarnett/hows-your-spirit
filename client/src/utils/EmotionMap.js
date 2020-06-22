@@ -85,10 +85,10 @@ const self = (module.exports = {
 
 	// get descriptors for mood and energy
 	descriptors: (emotionData) => {
-		const emotionPositivity = self.positivity.find((item) => item.x === Math.round(emotionData.x));
+		const emotionPositivity = self.mood.find((item) => item.x === Math.round(emotionData.x));
 		const emotionEnergy = self.energy.find((item) => item.y === Math.round(emotionData.y));
 		return {
-			positivity: emotionPositivity.descriptor,
+			mood: emotionPositivity.descriptor,
 			energy: emotionEnergy.descriptor,
 		};
 	},
