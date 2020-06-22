@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
 import BarGraph from "../../assets/stacked-bar.png";
 import EmotionMap from "../../utils/EmotionMap";
+import Chart from "react-google-charts";
 
 // Export function
 function ViewActivity({ entries }) {

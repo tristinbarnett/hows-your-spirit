@@ -153,7 +153,6 @@ const self = (module.exports = {
 			x: xGrowth / (entries.length - 1),
 			y: yGrowth / (entries.length - 1),
 		});
-		console.log("growth%: ", growthPercentages);
 		return growthPercentages;
 	},
 

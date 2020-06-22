@@ -1,5 +1,5 @@
 // Global
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,29 +14,42 @@ import Oops from "../../pages/oops";
 
 // Export
 function App() {
-	// set page with no authentication
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	console.log("logged in?", isAuthenticated);
 	// set page with no user
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState(null);
 
+	// check local storage for user
+	useEffect(() => {
+		let localUser = localStorage.getItem("user");
+		if (localUser) {
+			setUser(JSON.parse(localUser));
+		}
+	}, []);
+
+	// handle user login
 	const handleUser = (userData) => {
-		console.log("currentuser: ", userData);
-		setUser(userData);
-		setIsAuthenticated(true);
+		let currentUser = userData.data;
+		console.log("currentuser: ", currentUser);
+		setUser(currentUser);
+		localStorage.setItem("user", JSON.stringify(currentUser));
 	};
 
+	// handle user logout
+	const handleLogout = () => {
+		setUser(null);
+		localStorage.clear();
+	};
+
+	console.log("user", user);
+
 	return (
-		<>
-			{!isAuthenticated ? (
-				<Router>
-					<Route path="/">
-						<Login authUser={handleUser} />
-					</Route>
-				</Router>
+		<Router>
+			{!user ? (
+				<Route path="/">
+					<Login authUser={handleUser} />
+				</Route>
 			) : (
-				<Router>
-					<Navbar />
+				<>
+					<Navbar logoutUser={handleLogout} />
 					<Switch>
 						<Route exact path={["/", "/hows-your-spirit", "/home"]}>
 							<Home user={user} />
@@ -54,9 +67,9 @@ function App() {
 							<Oops />
 						</Route>
 					</Switch>
-				</Router>
+				</>
 			)}
-		</>
+		</Router>
 	);
 }
 
