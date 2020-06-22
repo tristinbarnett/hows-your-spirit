@@ -9,4 +9,7 @@ router.route("/auth")
 router.route("/entries")
   .post(entriesController.create);
 
+router.route("/entries/:id")
+  .get(entriesController.getUserEntries);
+
 module.exports = router;
