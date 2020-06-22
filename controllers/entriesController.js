@@ -15,8 +15,8 @@ module.exports = {
   },
   getUserEntries: function (req, res) {
     db.Users
-      .findOne({ email: req.body.email })
-      .populate('entries')
+      .findOne({ _id: req.params.id })
+      .populate('entries') 
       .exec(function (err, entries) {
         if (err) return handleError(err);
         console.log(entries);
