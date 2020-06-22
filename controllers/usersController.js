@@ -23,17 +23,15 @@ module.exports = {
   // }
   create: function (req, res) {
     db.Users //check if user already exists
-    .findOne({email: req.body.email}, function (err, user){ 
-      if(user){
-        return err
-      } else {
-        db.Users.create(req.body)
-        .then(dbModel => res.json(dbModel._id))
-        .catch(err => res.status(422).json(err));
-      }
-  }); 
-       //send back id
-      
+      .findOne({ email: req.body.email }, function (err, user) {
+        if (user) {
+          return err
+        } else {
+          db.Users.create(req.body)
+            .then(dbModel => res.json(dbModel._id))
+            .catch(err => res.status(422).json(err));
+        }
+      });
   }
   // update: function(req, res) {
   //   db.Users

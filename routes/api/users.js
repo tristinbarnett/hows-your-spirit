@@ -7,6 +7,7 @@ router.route("/auth")
   .post(usersController.create);
 
 router.route("/entries")
-  .post(entriesController.create);
+  .post(entriesController.create)
+  .get(entriesController.getUserEntries);
 
 module.exports = router;
