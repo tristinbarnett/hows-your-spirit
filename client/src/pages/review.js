@@ -12,50 +12,48 @@ import ViewActivity from "../components/ViewActivity";
 
 //TEMPORARY DATA (AWAITING BACKEND)
 const dayOne = {
-	date: "June 1, 2020",
-	emotions: [{ x: -1, y: -1, weight: 4 }],
-	factors: {
-		exercise: true,
-		"get 8 hours of sleep": false,
-		"drink alcohol": false,
-	},
+	date: "June 10, 2020",
+	emotions: [{ x: -1, y: 1, emotion: "annoyed", weight: 4 }],
+	factors: [
+		{ activity: "eat healthy meals", state: true },
+		{ activity: "exercise at least 30 minutes", state: false },
+		{ activity: "get at least 8 hours of sleep", state: false },
+		{ activity: "drink alcohol", state: false },
+	],
 };
+
 const dayTwo = {
-	date: "June 2, 2020",
-	emotions: [
-		{ x: 2, y: 2, weight: 3 },
-		{ x: -1, y: 2, weight: 1 },
+	date: "June 11, 2020",
+	emotions: [{ x: -1, y: -1, emotion: "sad", weight: 4 }],
+	factors: [
+		{ activity: "eat healthy meals", state: false },
+		{ activity: "exercise at least 30 minutes", state: true },
+		{ activity: "get at least 8 hours of sleep", state: false },
+		{ activity: "drink alcohol", state: false },
 	],
-	factors: {
-		exercise: true,
-		"get 8 hours of sleep": true,
-		"drink alcohol": false,
-	},
 };
+
 const dayThree = {
-	date: "June 3, 2020",
-	emotions: [
-		{ x: 1, y: 2, weight: 1 },
-		{ x: -2, y: 2, weight: 1 },
-		{ x: 2, y: 2, weight: 1 },
+	date: "June 12, 2020",
+	emotions: [{ x: 1, y: 1, emotion: "happy", weight: 4 }],
+
+	factors: [
+		{ activity: "eat healthy meals", state: false },
+		{ activity: "exercise at least 30 minutes", state: false },
+		{ activity: "get at least 8 hours of sleep", state: true },
+		{ activity: "drink alcohol", state: false },
 	],
-	factors: {
-		exercise: false,
-		"get 8 hours of sleep": false,
-		"drink alcohol": true,
-	},
 };
+
 const dayFour = {
-	date: "June 4, 2020",
-	emotions: [
-		{ x: 1, y: 2, weight: 3 },
-		{ x: -2, y: 1, weight: 1 },
+	date: "June 13, 2020",
+	emotions: [{ x: 2, y: 2, emotion: "excited", weight: 4 }],
+	factors: [
+		{ activity: "eat healthy meals", state: false },
+		{ activity: "exercise at least 30 minutes", state: false },
+		{ activity: "get at least 8 hours of sleep", state: false },
+		{ activity: "drink alcohol", state: true },
 	],
-	factors: {
-		exercise: false,
-		"get 8 hours of sleep": false,
-		"drink alcohol": false,
-	},
 };
 
 // Page Content
@@ -87,25 +85,13 @@ function Review() {
 			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
 				<div class="flexbox-container">
 					<ButtonGroup>
-						<Button
-							variant="primary"
-							size="lg"
-							value="journal"
-							onClick={handleButtons}>
+						<Button variant="primary" size="lg" value="journal" onClick={handleButtons}>
 							Journal
 						</Button>
-						<Button
-							variant="outline-primary"
-							size="lg"
-							value="time"
-							onClick={handleButtons}>
+						<Button variant="outline-primary" size="lg" value="time" onClick={handleButtons}>
 							Time
 						</Button>
-						<Button
-							variant="primary"
-							size="lg"
-							value="activity"
-							onClick={handleButtons}>
+						<Button variant="primary" size="lg" value="activity" onClick={handleButtons}>
 							Activity
 						</Button>
 					</ButtonGroup>
