@@ -61,7 +61,7 @@ function Home() {
 
 	// set state of wellbeing
 	useEffect(() => {
-		let localUser = localStorage.getItem("user");
+		let localUser = JSON.parse(localStorage.getItem("user"));
 		console.log("localuser: ", localUser);
 
 		API.getEntries(localUser)

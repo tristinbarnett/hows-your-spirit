@@ -18,13 +18,10 @@ module.exports = {
       .findOne({ _id: req.params.id })
       .populate('entries') 
       .exec(function (err, user) {
-        if (err) return handleError(err);
-        console.log(user);
+        if (err) console.log("error " + err);
+        console.log("user " +user);
         res.json(user.entries);
       })
-      .catch(err => {
-        res.json(err);
-      });
   }
 }
 
