@@ -1,16 +1,18 @@
 // Global
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../components/App/app.css";
 import { Button, Form } from "react-bootstrap";
+import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
-function ActivityEntry({ entriesMap, submitActivity }) {
-	// set up emotion states
-	const [activities, setActivities] = useState(entriesMap);
+function ActivityEntry({ submitActivity }) {
+	// set up tracked activities
+	const [activities, setActivities] = useState(EmotionMap.factorsTracked);
+	console.log("activites: ", activities);
 
 	// add activity on checkbox select
 	const handleCheckbox = (event) => {
-		const checked = entriesMap.findIndex((entry) => entry.activity === event.target.value);
+		const checked = activities.findIndex((entry) => entry.label === event.target.value);
 		const updateActivities = activities;
 		updateActivities[checked].state ? (updateActivities[checked].state = false) : (updateActivities[checked].state = true);
 		setActivities(updateActivities);
@@ -35,14 +37,9 @@ function ActivityEntry({ entriesMap, submitActivity }) {
 			<div>
 				<Form style={{ marginLeft: "20px" }}>
 					{/* suggest checkboxes so user knows that more than one can be selected - can change back to radio by changing type="radio"*/}
-					{entriesMap.map((entry) => (
-						<div key={entry.activity} className="mb-3">
-							<Form.Check
-								type="checkbox"
-								value={entry.activity}
-								onChange={handleCheckbox}
-								label={<h3 style={{ color: "#FFC300" }}>{`${entry.activity}?`}</h3>}
-							/>
+					{activities.map((entry) => (
+						<div key={entry.label} className="mb-3">
+							<Form.Check type="checkbox" value={entry.label} onChange={handleCheckbox} label={<h3 style={{ color: "#FFC300" }}>{`${entry.activity}?`}</h3>} />
 							<br />
 						</div>
 					))}

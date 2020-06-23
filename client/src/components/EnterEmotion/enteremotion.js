@@ -1,12 +1,23 @@
 // Global
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../components/App/app.css";
 import { Button, ButtonGroup, Form } from "react-bootstrap";
+import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
 function EmotionEntry({ submitEmotion }) {
-	// set up emotion states
+	// entry to be submitted
 	const [emotion, setEmotion] = useState({});
+	// entry states
+	const [entryForm, setEntryForm] = useState({ feelings: EmotionMap.feelings, weights: EmotionMap.weights, submit: false, radioCheck: false });
+
+	// reset form when submitted
+	useEffect(() => {
+		if (entryForm.submit) {
+			setEmotion({});
+			setEntryForm({ ...entryForm, submit: false, radioCheck: false });
+		}
+	}, [entryForm]);
 
 	// change emotion on button click
 	const handleButtons = (event) => {
@@ -15,13 +26,15 @@ function EmotionEntry({ submitEmotion }) {
 
 	// change weight on radio select
 	const handleRadio = (event) => {
-		setEmotion({ ...emotion, weight: event.target.value });
+		// setEntryForm({ ...entryForm, radioCheck: true });
+		setEmotion({ ...emotion, weight: parseInt(event.target.value) });
 	};
 
 	// handle submit buttons
 	const handleSubmit = (event) => {
-		let submitType = event.target.value;
-		submitEmotion(emotion, submitType);
+		console.log("submit: ", emotion, event.target.value);
+		submitEmotion(emotion, event.target.value);
+		setEntryForm({ ...entryForm, submit: true });
 	};
 
 	return (
@@ -128,10 +141,20 @@ function EmotionEntry({ submitEmotion }) {
 			<div>
 				<Form style={{ marginLeft: "20px" }}>
 					<div className="mb-3">
-						<Form.Check type="radio" name="weight" value={1} onChange={handleRadio} label={<p>In passing</p>} />
-						<Form.Check type="radio" name="weight" value={2} onChange={handleRadio} label={<p>Some of the day</p>} />
-						<Form.Check type="radio" name="weight" value={3} onChange={handleRadio} label={<p>A lot of the day</p>} />
-						<Form.Check type="radio" name="weight" value={4} onChange={handleRadio} label={<p>Most, or all of the day</p>} />
+						{entryForm.weights.map((weight) => {
+							return (
+								<Form.Check
+									key={weight.w}
+									type="radio"
+									name="weight"
+									value={weight.w}
+									// defaultChecked={false}
+									checked={weight.w === emotion.weight}
+									onChange={handleRadio}
+									label={<p>{weight.descriptor}</p>}
+								/>
+							);
+						})}
 					</div>
 
 					{/* {["radio"].map((type) => (
@@ -145,21 +168,22 @@ function EmotionEntry({ submitEmotion }) {
 							<Form.Check type={type} id={`most`} label={<p>Most, or all of the day</p>} />
 						</div>
 					))} */}
+
+					<div
+						class="container"
+						style={{
+							textAlign: "center",
+							alignContent: "center",
+							marginBottom: "5px",
+						}}>
+						<Button variant="primary" size="lg" value="addEmotion" onClick={handleSubmit}>
+							Add Emotion
+						</Button>
+						<Button variant="success" size="lg" value="completeEmotion" onClick={handleSubmit}>
+							Finalize Entry
+						</Button>
+					</div>
 				</Form>
-			</div>
-			<div
-				class="container"
-				style={{
-					textAlign: "center",
-					alignContent: "center",
-					marginBottom: "5px",
-				}}>
-				<Button variant="primary" size="lg" type="submit" value="addEmotion" onClick={handleSubmit}>
-					Add Emotion
-				</Button>
-				<Button variant="success" size="lg" type="submit" value="completeEmotion" onClick={handleSubmit}>
-					Finalize Entry
-				</Button>
 			</div>
 			<br />
 			<br />

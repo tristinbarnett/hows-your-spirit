@@ -1,5 +1,5 @@
 // Global
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../components/App/app.css";
 import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
 import BtmLogo from "../assets/HYS-logo-lg.png";
@@ -10,70 +10,10 @@ import ViewJournal from "../components/ViewJournal";
 import ViewTime from "../components/ViewTime";
 import ViewActivity from "../components/ViewActivity";
 
-//TEMPORARY DATA (AWAITING BACKEND)
-const dayOne = {
-	date: "June 10, 2020",
-	emotions: [{ x: -1, y: 1, emotion: "annoyed", weight: 4 }],
-	factors: [
-		{ activity: "eat healthy meals", state: true },
-		{ activity: "exercise at least 30 minutes", state: false },
-		{ activity: "get at least 8 hours of sleep", state: false },
-		{ activity: "drink alcohol", state: false },
-	],
-};
-
-const dayTwo = {
-	date: "June 11, 2020",
-	emotions: [{ x: -1, y: -1, emotion: "sad", weight: 4 }],
-	factors: [
-		{ activity: "eat healthy meals", state: false },
-		{ activity: "exercise at least 30 minutes", state: true },
-		{ activity: "get at least 8 hours of sleep", state: false },
-		{ activity: "drink alcohol", state: false },
-	],
-};
-
-const dayThree = {
-	date: "June 12, 2020",
-	emotions: [{ x: 1, y: 1, emotion: "happy", weight: 4 }],
-
-	factors: [
-		{ activity: "eat healthy meals", state: false },
-		{ activity: "exercise at least 30 minutes", state: false },
-		{ activity: "get at least 8 hours of sleep", state: true },
-		{ activity: "drink alcohol", state: false },
-	],
-};
-
-const dayFour = {
-	date: "June 13, 2020",
-	emotions: [{ x: 2, y: 2, emotion: "excited", weight: 4 }],
-	factors: [
-		{ activity: "eat healthy meals", state: false },
-		{ activity: "exercise at least 30 minutes", state: false },
-		{ activity: "get at least 8 hours of sleep", state: false },
-		{ activity: "drink alcohol", state: true },
-	],
-};
-
 // Page Content
-function Review() {
-	// data to be reviewed
-	const [data, setData] = useState([]);
+function Review({ entries }) {
 	// type of view on page
 	const [view, setView] = useState("time");
-
-	// get data
-	useEffect(() => {
-		// API.getEntries("thisweek").then((res) => {
-		// const entries = res;
-		// PLACEHOLDER FOR GET ENTRIES FROM DB
-		const entries = [dayOne, dayTwo, dayThree, dayFour];
-		setData(entries);
-		// }).catch((err) => {
-		// 	console.log("error: ", err);
-		// });
-	}, []);
 
 	// change view on button click
 	const handleButtons = (event) => {
@@ -103,19 +43,19 @@ function Review() {
 							case "journal":
 								return (
 									<div>
-										<ViewJournal entries={data} />
+										<ViewJournal entries={entries} />
 									</div>
 								);
 							case "time":
 								return (
 									<div>
-										<ViewTime entries={data} />
+										<ViewTime entries={entries} />
 									</div>
 								);
 							case "activity":
 								return (
 									<div>
-										<ViewActivity entries={data} />
+										<ViewActivity entries={entries} />
 									</div>
 								);
 							default:

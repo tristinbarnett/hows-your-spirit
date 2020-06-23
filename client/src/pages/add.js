@@ -6,30 +6,28 @@ import BtmLogo from "../assets/HYS-logo-lg.png";
 import moment from "moment";
 
 // Local
-import API from "../utils/API";
-import EmotionMap, { feeling } from "../utils/EmotionMap";
+import EmotionMap from "../utils/EmotionMap";
 import EnterEmotion from "../components/EnterEmotion";
 import EnterActivity from "../components/EnterActivity";
 
 // Page Content
-function Add() {
-	// set current entry state
+function Add({ submitEntry }) {
+	// current entry state
 	const [entryStatus, setEntryStatus] = useState("addEmotion");
-	// set entry data
+	// entry data
 	const [entryData, setEntryData] = useState({ date: moment().format("MMMM Do YYYY"), emotions: [], factors: [] });
-	// get emotionMap for entries
-	const entriesMap = EmotionMap.map();
 
 	// submit entry when complete
 	useEffect(() => {
+		console.log("entryData: ", entryData);
 		if (entryStatus === "complete") {
-			submitEntry();
+			submitEntry(entryData);
 		}
 	}, [entryData]);
 
 	// handle submit buttons
 	const handleSubmit = (data, submitType) => {
-		setEntryStatus(submitType);
+		console.log("data: ", data);
 		switch (submitType) {
 			case "addEmotion":
 			case "completeEmotion":
@@ -37,28 +35,15 @@ function Add() {
 					let feelingEntry = EmotionMap.feeling(data.feeling);
 					feelingEntry.weight = data.weight;
 					setEntryData({ ...entryData, emotions: [...entryData.emotions, feelingEntry] });
-					// reset emotion form if adding another emotion
 				}
 				break;
 			case "complete":
 				setEntryData({ ...entryData, factors: data });
-				// setEntryData({ ...entryData, factors: data }, submitEntry());
 				break;
 			default:
 				console.log("oops: ", submitType);
 		}
-	};
-
-	// submit to database
-	const submitEntry = () => {
-		let localUser = localStorage.getItem("user");
-		API.createEntry(localUser, entryData)
-			.then((res) => {
-				console.log("results: ", res);
-			})
-			.catch((err) => {
-				console.log("error: ", err);
-			});
+		setEntryStatus(submitType);
 	};
 
 	return (
@@ -70,13 +55,13 @@ function Add() {
 						case "addEmotion":
 							return (
 								<div>
-									<EnterEmotion entriesMap={(entriesMap.feelings, entriesMap.durations)} submitEmotion={handleSubmit} />
+									<EnterEmotion submitEmotion={handleSubmit} />
 								</div>
 							);
 						case "completeEmotion":
 							return (
 								<div>
-									<EnterActivity entriesMap={entriesMap.activities} submitActivity={handleSubmit} />
+									<EnterActivity submitActivity={handleSubmit} />
 								</div>
 							);
 						case "complete":

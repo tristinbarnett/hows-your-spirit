@@ -8,6 +8,7 @@ import EmotionMap from "../../utils/EmotionMap";
 function ViewJournal({ entries }) {
 	// get emotion from an entry
 	const getDuration = (emotion) => {
+		console.log("emotion from get duration: ", emotion);
 		const duration = EmotionMap.duration(emotion.weight);
 		return duration;
 	};
@@ -23,7 +24,7 @@ function ViewJournal({ entries }) {
 
 	return (
 		<div class="flexbox-container" style={{ textAlign: "center", alignContent: "center" }}>
-			{entries.length ? (
+			{entries && entries.length ? (
 				<div>
 					{entries.map((entry) => (
 						// can't have line break between cards because of rule to only have one parent element in jsx expression

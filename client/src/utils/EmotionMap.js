@@ -158,9 +158,10 @@ const self = (module.exports = {
 
 	// helper function to get differentials
 	differential: (entries, effectFactor) => {
-		// if filtered = 0 ???????
 		const filtered = entries.filter((entry) => entry.factors.find((factor) => factor.activity === effectFactor && factor.state === true));
 		console.log("filtered: ", filtered);
+		if (!filtered.length) return null;
+
 		// run comparison
 		const comparison = self.compare(filtered, entries);
 		// translate numbers to descriptors
