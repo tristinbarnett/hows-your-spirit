@@ -19,5 +19,5 @@ export default {
 	createEntry: (user, entryData) => axios.post("/entries", { user: user, entry: entryData }),
 
 	// get entries by criteria
-	getEntries: (id) => axios.get("/entries" + id),
+	getEntries: (id) => axios.get("/entries/" + id),
 };
