@@ -1,7 +1,7 @@
 // Global
 import React, { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
+import {  Button, ButtonGroup } from "react-bootstrap";
 
 // Local
 import API from "../utils/API";
@@ -79,12 +79,12 @@ function Login({ authUser }) {
 										<br />
 										<br />
 										<br />
-										<img src={Logo} />
+										<img src={Logo} alt="How's Your Spirit?" />
 									</div>
 									<br />
 									<h2 style={{ color: "#BFE2FF" }}>Login to your account:</h2>
 									<br />
-									{loginError === "login" ? <Alert>Your information could not be verified. Please try again.</Alert> : <></>}
+									{loginError === "login" ? <Alert variant="danger">Your information could not be verified. Please try again.</Alert> : <></>}
 									<User name={formName} submitUser={handleSubmitUser} />
 									<br />
 									<br />
@@ -99,12 +99,12 @@ function Login({ authUser }) {
 										<br />
 										<br />
 										<br />
-										<img src={Logo} />
+										<img src={Logo} alt="How's Your Spirit?"/>
 									</div>
 									<br />
 									<h2 style={{ color: "#FFC300" }}>Sign up for an account:</h2>
 									<br />
-									{loginError === "signup" ? <Alert>Error. User with this email already exists. Please try logging in.</Alert> : <></>}
+									{loginError === "signup" ? <Alert variant="danger">Error. User with this email already exists. Please try logging in.</Alert> : <></>}
 									<User name={formName} submitUser={handleSubmitUser} />
 									<br />
 									<br />
@@ -119,7 +119,7 @@ function Login({ authUser }) {
 										<br />
 										<br />
 										<br />
-										<img src={Logo} />
+										<img src={Logo} alt="How's Your Spirit?"/>
 									</div>
 									<br />
 									<div style={{ textAlign: "center", margin: "5px" }}>

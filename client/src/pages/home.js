@@ -46,9 +46,9 @@ function Home({ entries }) {
 				<br />
 				{wellbeing ? (
 					<div class="container">
-						<h1 style={{ color: "#FFC300", textAlign: "center" }}>Mood is {wellbeing.mood}</h1>
+						<h3 style={{ color: "#FFC300", textAlign: "center" }}>Mood is {wellbeing.mood}</h3>
 						<br />
-						<h1 style={{ color: "#BFE2FF", textAlign: "center" }}>Energy is {wellbeing.energy}</h1>
+						<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>Energy is {wellbeing.energy}</h3>
 						<br />
 					</div>
 				) : (
@@ -67,7 +67,7 @@ function Home({ entries }) {
 					</Button>
 				</div>
 
-				<br />
+				<br /><br /><br /><br /><br />
 			</div>
 		</body>
 	);

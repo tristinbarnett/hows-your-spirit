@@ -6,6 +6,14 @@
     margin-bottom: 5px;
 
 }
+.flexbox-containerB {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 13px;
+    margin-right: 13px;
+    margin-bottom: 5px;
+
+}
 .image-container {
     display: flex;
     flex-direction: column;
