@@ -1,14 +1,15 @@
 // Global
-import React, { useState, useEffect } from "react";
-import "../../components/App/app.css";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+
+// Local
+import "../../components/App/app.css";
 import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
 function ActivityEntry({ submitActivity }) {
-	// set up tracked activities
+	// tracked activities
 	const [activities, setActivities] = useState(EmotionMap.factorsTracked);
-	console.log("activites: ", activities);
 
 	// add activity on checkbox select
 	const handleCheckbox = (event) => {
@@ -60,7 +61,7 @@ function ActivityEntry({ submitActivity }) {
 			</div>
 
 			<div class="container">
-				<Button variant="primary" size="lg" block type="submit" value="complete" onClick={handleSubmit}>
+				<Button variant="primary" size="lg" block value="complete" onClick={handleSubmit}>
 					Submit
 				</Button>
 				<br />

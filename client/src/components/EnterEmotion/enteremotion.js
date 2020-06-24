@@ -1,24 +1,24 @@
 // Global
 import React, { useState, useEffect } from "react";
+import { Button, Form, Alert } from "react-bootstrap";
+
+// Local
 import "../../components/App/app.css";
-import { Button, ButtonGroup, Form } from "react-bootstrap";
 import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
 function EmotionEntry({ submitEmotion }) {
-	// entry to be submitted
-	const [emotion, setEmotion] = useState({});
-	// entry states
-	const [entryForm, setEntryForm] = useState({ feelings: EmotionMap.feelings, weights: EmotionMap.weights, submit: false, radioCheck: false });
-
-	// reset form when submitted
+	// entry form
+	const [entryForm, setEntryForm] = useState({ feelings: EmotionMap.feelings, weights: EmotionMap.weights, submit: false, error: false });
 	useEffect(() => {
 		if (entryForm.submit) {
 			setEmotion({});
-			setEntryForm({ ...entryForm, submit: false, radioCheck: false });
+			setEntryForm({ ...entryForm, submit: false, error: false });
 		}
 	}, [entryForm]);
 
+	// entry to be submitted
+	const [emotion, setEmotion] = useState({});
 	// change emotion on button click
 	const handleButtons = (event) => {
 		setEmotion({ ...emotion, feeling: event.target.value });
@@ -26,15 +26,17 @@ function EmotionEntry({ submitEmotion }) {
 
 	// change weight on radio select
 	const handleRadio = (event) => {
-		// setEntryForm({ ...entryForm, radioCheck: true });
 		setEmotion({ ...emotion, weight: parseInt(event.target.value) });
 	};
 
 	// handle submit buttons
 	const handleSubmit = (event) => {
-		console.log("submit: ", emotion, event.target.value);
-		submitEmotion(emotion, event.target.value);
-		setEntryForm({ ...entryForm, submit: true });
+		if (emotion.feeling && emotion.weight) {
+			submitEmotion(emotion, event.target.value);
+			setEntryForm({ ...entryForm, submit: true, error: false });
+		} else {
+			setEntryForm({ ...entryForm, error: true });
+		}
 	};
 
 	return (
@@ -47,6 +49,31 @@ function EmotionEntry({ submitEmotion }) {
 			</div>
 			<div class="flexbox-container">
 				<div
+					class="container"
+					style={{
+						textAlign: "center",
+						alignContent: "center",
+						marginBottom: "5px",
+					}}>
+					{entryForm.feelings.map((feeling) => {
+						let colorBtn = feeling.x === -2 ? "outline-danger" : feeling.x === -1 ? "outline-warning" : feeling.x === 1 ? "outline-primary" : "outline-success";
+						return (
+							<Button
+								key={feeling.emotion}
+								size="sm"
+								// className fits the button to 1/4 of the grid so buttons wrap 4 per row
+								// trade off is "disappointed" doesnt fit - do we change word?
+								// or write map function in four seperate parts to create 4 individual rows?
+								className="col-3"
+								variant={colorBtn}
+								value={feeling.emotion}
+								onClick={handleButtons}>
+								{feeling.emotion}
+							</Button>
+						);
+					})}
+				</div>
+				{/* <div
 					class="container"
 					style={{
 						textAlign: "center",
@@ -128,7 +155,7 @@ function EmotionEntry({ submitEmotion }) {
 					<Button variant="outline-success" size="sm" value="peaceful" onClick={handleButtons}>
 						Peaceful
 					</Button>
-				</div>
+				</div> */}
 			</div>
 			<br />
 			<div class="container">
@@ -148,7 +175,6 @@ function EmotionEntry({ submitEmotion }) {
 									type="radio"
 									name="weight"
 									value={weight.w}
-									// defaultChecked={false}
 									checked={weight.w === emotion.weight}
 									onChange={handleRadio}
 									label={<p>{weight.descriptor}</p>}
@@ -156,18 +182,7 @@ function EmotionEntry({ submitEmotion }) {
 							);
 						})}
 					</div>
-
-					{/* {["radio"].map((type) => (
-						<div key={`default-${type}`} className="mb-3">
-							<Form.Check type={type} id={`passing`} label={<p>In passing</p>} />
-
-							<Form.Check type={type} id={`some`} label={<p>Some of the day</p>} />
-
-							<Form.Check type={type} id={`lot`} label={<p>A lot of the day</p>} />
-
-							<Form.Check type={type} id={`most`} label={<p>Most, or all of the day</p>} />
-						</div>
-					))} */}
+					{entryForm.error ? <Alert variant="danger">You must choose a feeling and duration before submitting.</Alert> : <></>}
 
 					<div
 						class="container"

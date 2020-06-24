@@ -1,25 +1,22 @@
 // Global
 import React, { useState, useEffect } from "react";
-import "../components/App/app.css";
 import { Button, ButtonGroup, Form } from "react-bootstrap";
 import BtmLogo from "../assets/HYS-logo-lg.png";
 import moment from "moment";
 
 // Local
+import "../components/App/app.css";
 import EmotionMap from "../utils/EmotionMap";
 import EnterEmotion from "../components/EnterEmotion";
 import EnterActivity from "../components/EnterActivity";
 
 // Page Content
 function Add({ submitEntry }) {
-	// current entry state
+	// entry submission status
 	const [entryStatus, setEntryStatus] = useState("addEmotion");
 	// entry data
 	const [entryData, setEntryData] = useState({ date: moment().format("MMMM Do YYYY"), emotions: [], factors: [] });
-
-	// submit entry when complete
 	useEffect(() => {
-		console.log("entryData: ", entryData);
 		if (entryStatus === "complete") {
 			submitEntry(entryData);
 		}
@@ -27,7 +24,6 @@ function Add({ submitEntry }) {
 
 	// handle submit buttons
 	const handleSubmit = (data, submitType) => {
-		console.log("data: ", data);
 		switch (submitType) {
 			case "addEmotion":
 			case "completeEmotion":
