@@ -4,7 +4,7 @@ module.exports = {
   create: function ({ body }, res) {
     db.Entries
       .create(body.entry)
-      .then(_id => db.Users.findOneAndUpdate({}, { $push: { entries: _id } }, { new: true }))
+      .then(_id => db.Users.findOneAndUpdate({_id: body.user}, { $push: { entries: _id } }, { new: true }))
       .then(updatedUser => {
         console.log(updatedUser);
         res.json(updatedUser);
@@ -19,7 +19,6 @@ module.exports = {
       .populate('entries') 
       .exec(function (err, user) {
         if (err) console.log("error " + err);
-        console.log("user " +user);
         res.json(user.entries);
       })
   }
