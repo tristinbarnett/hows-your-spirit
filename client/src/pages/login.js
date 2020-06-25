@@ -1,7 +1,7 @@
 // Global
 import React, { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import {  Button, ButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 // Local
 import API from "../utils/API";
@@ -21,17 +21,13 @@ function Login({ authUser }) {
 
 	// form submission
 	const handleSubmitUser = (values) => {
-		console.log("user submitted: ", values);
-		console.log("form name: ", formName);
 		formName === "login" ? handleLogin(values) : handleSignup(values);
 	};
 
 	// user login
 	const handleLogin = (userData) => {
-		console.log("user data: ", userData);
 		API.login(userData)
 			.then((res) => {
-				console.log("logged in: ", res);
 				authUser(res);
 			})
 			.catch((err) => {
@@ -42,10 +38,8 @@ function Login({ authUser }) {
 
 	// user signup
 	const handleSignup = (userData) => {
-		console.log("user data: ", userData);
 		API.signup(userData)
 			.then((res) => {
-				console.log("signed up: ", res);
 				authUser(res);
 			})
 			.catch((err) => {
@@ -56,9 +50,9 @@ function Login({ authUser }) {
 
 	return (
 		<main style={{ backgroundColor: "#BFE2FF" }}>
-			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
+			<div className="flexbox-container" style={{ backgroundColor: "white" }}>
 				<br />
-				<div class="flexbox-container">
+				<div className="flexbox-container">
 					<ButtonGroup>
 						<Button variant="outline-primary" size="lg" value="login" onClick={handleButtons}>
 							Login
@@ -73,8 +67,8 @@ function Login({ authUser }) {
 					switch (formName) {
 						case "login":
 							return (
-								<div class="container" style={{ margin: "5px" }}>
-									<div class="container" style={{ alignContent: "center", textAlign: "center" }}>
+								<div className="container" style={{ margin: "5px" }}>
+									<div className="container" style={{ alignContent: "center", textAlign: "center" }}>
 										<br />
 										<br />
 										<br />
@@ -93,13 +87,13 @@ function Login({ authUser }) {
 							);
 						case "signup":
 							return (
-								<div class="container" style={{ margin: "5px" }}>
-									<div class="container" style={{ alignContent: "center", textAlign: "center" }}>
+								<div className="container" style={{ margin: "5px" }}>
+									<div className="container" style={{ alignContent: "center", textAlign: "center" }}>
 										<br />
 										<br />
 										<br />
 										<br />
-										<img src={Logo} alt="How's Your Spirit?"/>
+										<img src={Logo} alt="How's Your Spirit?" />
 									</div>
 									<br />
 									<h2 style={{ color: "#FFC300" }}>Sign up for an account:</h2>
@@ -113,13 +107,13 @@ function Login({ authUser }) {
 							);
 						default:
 							return (
-								<div class="container" style={{ margin: "5px" }}>
-									<div class="container" style={{ alignContent: "center", textAlign: "center" }}>
+								<div className="container" style={{ margin: "5px" }}>
+									<div className="container" style={{ alignContent: "center", textAlign: "center" }}>
 										<br />
 										<br />
 										<br />
 										<br />
-										<img src={Logo} alt="How's Your Spirit?"/>
+										<img src={Logo} alt="How's Your Spirit?" />
 									</div>
 									<br />
 									<div style={{ textAlign: "center", margin: "5px" }}>

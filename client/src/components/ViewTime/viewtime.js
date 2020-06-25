@@ -1,8 +1,9 @@
 // Global
-import React, { useState, useEffect } from "react";
-//import Graph from "../../assets/graph.png";
-import EmotionMap from "../../utils/EmotionMap";
+import React from "react";
 import Chart from "react-google-charts";
+
+// Local
+import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
 function ViewTime({ entries }) {
@@ -13,10 +14,8 @@ function ViewTime({ entries }) {
 			const data = [["Day", "Mood", "Energy"]];
 			entries.forEach((entry) => {
 				const entryAverage = EmotionMap.average([entry]);
-				console.log("type: ", typeof entryAverage.x);
 				data.push([entry.date, entryAverage.x, entryAverage.y]);
 			});
-			console.log("data: ", data);
 			// vAxis
 			const ticks = [
 				{ v: -2, f: "very negative/low" },
@@ -80,7 +79,7 @@ function ViewTime({ entries }) {
 					</div>
 
 					<br />
-					<div class="container" style={{ paddingBottom: "15px" }}>
+					<div className="container" style={{ paddingBottom: "15px" }}>
 						<span>
 							<h3 style={{ color: "#007bff" }}>Mood is trending:</h3>
 						</span>

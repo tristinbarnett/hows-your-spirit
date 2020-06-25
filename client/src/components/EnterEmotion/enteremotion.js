@@ -41,15 +41,15 @@ function EmotionEntry({ submitEmotion }) {
 
 	return (
 		<div>
-			<div class="container" style={{ clear: "both" }}>
+			<div className="container" style={{ clear: "both" }}>
 				<h2 style={{ color: "#FFC300", textAlign: "center" }}>
 					<em>Today, I felt:</em>
 				</h2>
 				<br />
 			</div>
-			<div class="flexbox-container">
+			<div className="flexbox-container">
 				<div
-					class="container"
+					className="container"
 					style={{
 						textAlign: "center",
 						alignContent: "center",
@@ -58,112 +58,18 @@ function EmotionEntry({ submitEmotion }) {
 					{entryForm.feelings.map((feeling) => {
 						let colorBtn = feeling.x === -2 ? "outline-danger" : feeling.x === -1 ? "outline-warning" : feeling.x === 1 ? "outline-primary" : "outline-success";
 						return (
-							<Button
-								key={feeling.emotion}
-								size="sm"
-								// className fits the button to 1/4 of the grid so buttons wrap 4 per row
-								// trade off is "disappointed" doesnt fit - do we change word?
-								// or write map function in four seperate parts to create 4 individual rows?
-								className="col-3"
-								variant={colorBtn}
-								value={feeling.emotion}
-								onClick={handleButtons}>
+							<Button key={feeling.emotion} size="sm" className="col-3" variant={colorBtn} value={feeling.emotion} onClick={handleButtons}>
 								{feeling.emotion}
 							</Button>
 						);
 					})}
 				</div>
-				{/* <div
-					class="container"
-					style={{
-						textAlign: "center",
-						alignContent: "center",
-						marginBottom: "5px",
-					}}>
-					<Button variant="outline-danger" size="sm" value="angry" onClick={handleButtons}>
-						Angry
-					</Button>
-					<Button variant="outline-warning" size="sm" value="tense" onClick={handleButtons}>
-						Tense
-					</Button>
-					<Button variant="outline-primary" size="sm" value="surprised" onClick={handleButtons}>
-						Surprised
-					</Button>
-					<Button variant="outline-success" size="sm" value="excited" onClick={handleButtons}>
-						Excited
-					</Button>
-				</div>
-
-				<div
-					class="container"
-					style={{
-						textAlign: "center",
-						alignContent: "center",
-						marginBottom: "5px",
-					}}>
-					<Button variant="outline-danger" size="sm" value="anxious" onClick={handleButtons}>
-						Anxious
-					</Button>
-					<Button variant="outline-warning" size="sm" value="annoyed" onClick={handleButtons}>
-						Annoyed
-					</Button>
-					<Button variant="outline-primary" size="sm" value="happy" onClick={handleButtons}>
-						Happy
-					</Button>
-					<Button variant="outline-success" size="sm" value="hopeful" onClick={handleButtons}>
-						Hopeful
-					</Button>
-				</div>
-
-				<div
-					class="container"
-					style={{
-						textAlign: "center",
-						alignContent: "center",
-						marginBottom: "5px",
-					}}>
-					<Button variant="outline-danger" size="sm" value="disappointed" onClick={handleButtons}>
-						Disappointed
-					</Button>
-					<Button variant="outline-warning" size="sm" value="sad" onClick={handleButtons}>
-						Sad
-					</Button>
-					<Button variant="outline-primary" size="sm" value="calm" onClick={handleButtons}>
-						Calm
-					</Button>
-					<Button variant="outline-success" size="sm" value="fulfilled" onClick={handleButtons}>
-						Fulfilled
-					</Button>
-				</div>
-
-				<div
-					class="container"
-					style={{
-						textAlign: "center",
-						alignContent: "center",
-						marginBottom: "5px",
-					}}>
-					<Button variant="outline-danger" size="sm" value="hopeless" onClick={handleButtons}>
-						Hopeless
-					</Button>
-					<Button variant="outline-warning" size="sm" value="drained" onClick={handleButtons}>
-						Drained
-					</Button>
-					<Button variant="outline-primary" size="sm" value="relaxed" onClick={handleButtons}>
-						Relaxed
-					</Button>
-					<Button variant="outline-success" size="sm" value="peaceful" onClick={handleButtons}>
-						Peaceful
-					</Button>
-				</div> */}
 			</div>
 			<br />
-			<div class="container">
+			<div className="container">
 				<h1 style={{ color: "#BFE2FF", textAlign: "center" }}>
 					<em>{emotion.feeling}</em>
 				</h1>
-
-				
 			</div>
 			<div>
 				<Form style={{ marginLeft: "20px" }}>
@@ -183,24 +89,22 @@ function EmotionEntry({ submitEmotion }) {
 						})}
 					</div>
 					{entryForm.error ? <Alert variant="danger">You must choose a feeling and duration before submitting.</Alert> : <></>}
-
-					
 				</Form>
 				<div
-						class="container"
-						style={{
-							textAlign: "center",
-							alignContent: "center",
-							marginBottom: "5px",
-						}}>
-						<Button variant="primary" size="lg" block value="addEmotion" onClick={handleSubmit}>
-							Add emotion, then add another
-						</Button>
-						<br/>
-						<Button variant="success" size="lg" block value="completeEmotion" onClick={handleSubmit}>
-							Add emotion, and finish entry
-						</Button>
-					</div>
+					className="container"
+					style={{
+						textAlign: "center",
+						alignContent: "center",
+						marginBottom: "5px",
+					}}>
+					<Button variant="primary" size="lg" block value="addEmotion" onClick={handleSubmit}>
+						Add emotion, then add another
+					</Button>
+					<br />
+					<Button variant="success" size="lg" block value="completeEmotion" onClick={handleSubmit}>
+						Add emotion, and finish entry
+					</Button>
+				</div>
 			</div>
 			<br />
 			<br />
