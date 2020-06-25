@@ -1,6 +1,6 @@
 // Global
 import React, { useState, useEffect } from "react";
-import Graph from "../../assets/graph.png";
+//import Graph from "../../assets/graph.png";
 import EmotionMap from "../../utils/EmotionMap";
 import Chart from "react-google-charts";
 

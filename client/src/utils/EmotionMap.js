@@ -11,7 +11,7 @@ const self = (module.exports = {
 		{ x: 1, y: 1, emotion: "happy" },
 		{ x: 2, y: 1, emotion: "hopeful" },
 
-		{ x: -2, y: -1, emotion: "disappointed" },
+		{ x: -2, y: -1, emotion: "upset" },
 		{ x: -1, y: -1, emotion: "sad" },
 		{ x: 1, y: -1, emotion: "calm" },
 		{ x: 2, y: -1, emotion: "fulfilled" },

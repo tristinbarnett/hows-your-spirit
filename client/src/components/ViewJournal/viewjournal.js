@@ -1,7 +1,7 @@
 // Global
 import React from "react";
 import "../App/app.css";
-import { Button, ButtonGroup, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
@@ -29,7 +29,7 @@ function ViewJournal({ entries }) {
 					{entries.map((entry) => (
 						// can't have line break between cards because of rule to only have one parent element in jsx expression
 						// i added bootstrap class "mb-2" for bottom margin (adjust by changing number between 1 and 5)
-						<Card className="mb-2">
+						<Card border="primary" className="mb-2">
 							<Card.Header>{entry.date}</Card.Header>
 							<Card.Body>
 								{entry.emotions.map((emotion) => (

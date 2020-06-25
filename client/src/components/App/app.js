@@ -1,6 +1,6 @@
 // Global
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Local
@@ -18,7 +18,7 @@ function App() {
 	// current user
 	const [user, setUser] = useState(null);
 	useEffect(() => {
-		let localUser = localStorage.getItem("user");
+		let localUser = sessionStorage.getItem("user");
 		console.log("user from storage: ", localUser);
 		if (localUser) {
 			setUser(JSON.parse(localUser));
@@ -30,13 +30,13 @@ function App() {
 		let currentUser = userData.data;
 		console.log("user from login: ", userData.data);
 		setUser(currentUser);
-		localStorage.setItem("user", JSON.stringify(currentUser));
+		sessionStorage.setItem("user", JSON.stringify(currentUser));
 	};
 
 	// handle user logout
 	const handleLogout = () => {
 		setUser(null);
-		localStorage.clear();
+		sessionStorage.clear();
 	};
 
 	// current user entry data
@@ -75,6 +75,10 @@ function App() {
 	return (
 		<Router>
 			{!user ? (
+				// <>
+				// 	<Redirect to="/login" />
+				// 	<Route path="/login" render={(props) => <Login {...props} authUser={handleUser} />} />
+				// </>
 				<Route path="/">
 					<Login authUser={handleUser} />
 				</Route>
@@ -82,19 +86,22 @@ function App() {
 				<>
 					<Navbar logoutUser={handleLogout} />
 					<Switch>
-						{/* <Route exact path={["/", "/hows-your-spirit", "/home"]} render={() => <Home entries={userEntries} />} /> */}
-						<Route exact path={["/", "/hows-your-spirit", "/home"]}>
+						<Route exact path={["/", "/hows-your-spirit", "/home"]} render={() => <Home entries={userEntries} />} />
+						{/* <Route exact path={["/", "/hows-your-spirit", "/home"]}>
 							<Home entries={userEntries} />
-						</Route>
-						<Route path="/add">
+						</Route> */}
+						<Route path="/add" render={() => <Add submitEntry={submitEntry} />} />
+						{/* <Route path="/add">
 							<Add submitEntry={submitEntry} />
-						</Route>
-						<Route path="/review">
+						</Route> */}
+						<Route path="/review" render={() => <Review entries={userEntries} />} />
+						{/* <Route path="/review">
 							<Review entries={userEntries} />
-						</Route>
-						<Route path="/learn">
+						</Route> */}
+						<Route path="/learn" render={() => <Learn />} />
+						{/* <Route path="/learn">
 							<Learn />
-						</Route>
+						</Route> */}
 						<Route>
 							<Oops />
 						</Route>
