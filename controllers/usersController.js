@@ -14,18 +14,11 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  // findAll: function(req, res) {
-  //   db.Users
-  //     .find(req.query)
-  //     .sort({ date: -1 })
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
   create: function (req, res) {
     db.Users //check if user already exists
       .findOne({ email: req.body.email }, function (err, user) {
         if (user) {
-          return err
+          res.status(409).json(err);
         } else {
           db.Users.create(req.body)
             .then(dbModel => res.json(dbModel._id))
