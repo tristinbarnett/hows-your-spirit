@@ -1,11 +1,11 @@
 // Global
 import React, { useState } from "react";
 import "../components/App/app.css";
-import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
-import BtmLogo from "../assets/HYS-logo-lg.png";
-import BarGraph from "../assets/stacked-bar.png";
+import { Button, ButtonGroup } from "react-bootstrap";
+//import BtmLogo from "../assets/HYS-logo-lg.png";
+//import BarGraph from "../assets/stacked-bar.png";
 // Local
-import EmotionMap from "../utils/EmotionMap";
+//import EmotionMap from "../utils/EmotionMap";
 import ViewJournal from "../components/ViewJournal";
 import ViewTime from "../components/ViewTime";
 import ViewActivity from "../components/ViewActivity";
@@ -13,7 +13,7 @@ import ViewActivity from "../components/ViewActivity";
 // Page Content
 function Review({ entries }) {
 	// type of view on page
-	const [view, setView] = useState("time");
+	const [view, setView] = useState("journal");
 
 	// change view on button click
 	const handleButtons = (event) => {
@@ -59,10 +59,11 @@ function Review({ entries }) {
 									</div>
 								);
 							default:
-								return <div>oops!</div>;
+								return <div>Oops!</div>;
 						}
 					})()}
 				</div>
+			<br/><br/><br/><br/><br/><br/><br/><br/>
 			</div>
 		</body>
 	);

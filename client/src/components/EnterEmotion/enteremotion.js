@@ -163,7 +163,7 @@ function EmotionEntry({ submitEmotion }) {
 					<em>{emotion.feeling}</em>
 				</h1>
 
-				<br />
+				
 			</div>
 			<div>
 				<Form style={{ marginLeft: "20px" }}>
@@ -184,21 +184,23 @@ function EmotionEntry({ submitEmotion }) {
 					</div>
 					{entryForm.error ? <Alert variant="danger">You must choose a feeling and duration before submitting.</Alert> : <></>}
 
-					<div
+					
+				</Form>
+				<div
 						class="container"
 						style={{
 							textAlign: "center",
 							alignContent: "center",
 							marginBottom: "5px",
 						}}>
-						<Button variant="primary" size="lg" value="addEmotion" onClick={handleSubmit}>
-							Add Emotion
+						<Button variant="primary" size="lg" block value="addEmotion" onClick={handleSubmit}>
+							Add emotion, then add another
 						</Button>
-						<Button variant="success" size="lg" value="completeEmotion" onClick={handleSubmit}>
-							Finalize Entry
+						<br/>
+						<Button variant="success" size="lg" block value="completeEmotion" onClick={handleSubmit}>
+							Add emotion, and finish entry
 						</Button>
 					</div>
-				</Form>
 			</div>
 			<br />
 			<br />

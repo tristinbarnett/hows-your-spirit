@@ -1,7 +1,7 @@
 // Global
 import React, { useState, useEffect } from "react";
-import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
-import BarGraph from "../../assets/stacked-bar.png";
+//import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
+//import BarGraph from "../../assets/stacked-bar.png";
 import EmotionMap from "../../utils/EmotionMap";
 import Chart from "react-google-charts";
 
@@ -84,12 +84,12 @@ function ViewActivity({ entries }) {
 					</div>
 
 					<div class="container">
-						<h1 style={{ color: "#BFE2FF", textAlign: "center" }}>
+						<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>
 							<em>
 								Overall you feel <strong>{randomEffect.positivity}</strong> and have <strong>{randomEffect.energy}</strong> energy on days you{" "}
 								{randomEffect.factor}!
 							</em>
-						</h1>
+						</h3>
 
 						<br />
 						<br />

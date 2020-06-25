@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.571f6961.chunk.css",
+    "main.js": "/static/js/main.32105022.chunk.js",
+    "main.js.map": "/static/js/main.32105022.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b44436cf.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b44436cf.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.07dde393.chunk.js": "/static/js/2.07dde393.chunk.js",
+    "static/js/2.07dde393.chunk.js.map": "/static/js/2.07dde393.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ae24cce976e0a2dcc069a1d971666b1e.js": "/precache-manifest.ae24cce976e0a2dcc069a1d971666b1e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.571f6961.chunk.css.map": "/static/css/main.571f6961.chunk.css.map",
+    "static/js/2.07dde393.chunk.js.LICENSE.txt": "/static/js/2.07dde393.chunk.js.LICENSE.txt",
+    "static/media/HYS-logo-lg.png": "/static/media/HYS-logo-lg.a92fc096.png",
+    "static/media/graph.png": "/static/media/graph.eb05373c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b44436cf.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.07dde393.chunk.js",
+    "static/css/main.571f6961.chunk.css",
+    "static/js/main.32105022.chunk.js"
+  ]
+}
