@@ -55,7 +55,7 @@ function Login({ authUser }) {
 	};
 
 	return (
-		<body style={{ backgroundColor: "#BFE2FF" }}>
+		<main style={{ backgroundColor: "#BFE2FF" }}>
 			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
 				<br />
 				<div class="flexbox-container">
@@ -137,7 +137,7 @@ function Login({ authUser }) {
 					}
 				})()}
 			</div>
-		</body>
+		</main>
 	);
 }
 export default Login;

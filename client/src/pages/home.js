@@ -30,7 +30,7 @@ function Home({ entries }) {
 	const wellbeing = calculateWellbeing();
 
 	return (
-		<body style={{ backgroundColor: "#BFE2FF" }}>
+		<main style={{ backgroundColor: "#BFE2FF" }}>
 			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
 				<div class="container" style={{ clear: "both" }}>
 					<h2 style={{ color: "#FFC300", textAlign: "center" }}>
@@ -69,7 +69,7 @@ function Home({ entries }) {
 
 				<br /><br /><br /><br /><br />
 			</div>
-		</body>
+		</main>
 	);
 }
 

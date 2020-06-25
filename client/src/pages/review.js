@@ -21,7 +21,7 @@ function Review({ entries }) {
 	};
 
 	return (
-		<body style={{ backgroundColor: "#BFE2FF" }}>
+		<main style={{ backgroundColor: "#BFE2FF" }}>
 			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
 				<div class="flexbox-container">
 					<ButtonGroup>
@@ -65,7 +65,7 @@ function Review({ entries }) {
 				</div>
 			<br/><br/><br/><br/><br/><br/><br/><br/>
 			</div>
-		</body>
+		</main>
 	);
 }
 

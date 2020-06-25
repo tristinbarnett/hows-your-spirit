@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 // Page Content
 function Learn() {
 	return (
-		<body style={{ backgroundColor: '#BFE2FF' }}>
+		<main style={{ backgroundColor: '#BFE2FF' }}>
 			<div class="flexbox-container" style={{ backgroundColor: 'white' }}>
 				<div class="container" style={{ clear: "both" }}>
 					<h2 style={{ color: '#FFC300', textAlign: 'center' }}>Help Your Spirit!</h2>
@@ -25,7 +25,7 @@ function Learn() {
 				<br/><br/><br/><br/>
 				<br />
 			</div>
-		</body>
+		</main>
 	)
 }
 
