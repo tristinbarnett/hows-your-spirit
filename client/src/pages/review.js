@@ -22,8 +22,8 @@ function Review({ entries }) {
 
 	return (
 		<main style={{ backgroundColor: "#BFE2FF" }}>
-			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
-				<div class="flexbox-container">
+			<div className="flexbox-container" style={{ backgroundColor: "white" }}>
+				<div className="flexbox-container">
 					<ButtonGroup>
 						<Button variant="primary" size="lg" value="journal" onClick={handleButtons}>
 							Journal
@@ -37,7 +37,7 @@ function Review({ entries }) {
 					</ButtonGroup>
 					<br />
 				</div>
-				<div class="container" id="componentDiv">
+				<div className="container" id="componentDiv">
 					{(() => {
 						switch (view) {
 							case "journal":
@@ -63,7 +63,14 @@ function Review({ entries }) {
 						}
 					})()}
 				</div>
-			<br/><br/><br/><br/><br/><br/><br/><br/>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			</div>
 		</main>
 	);

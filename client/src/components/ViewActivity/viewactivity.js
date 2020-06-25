@@ -1,9 +1,9 @@
 // Global
-import React, { useState, useEffect } from "react";
-//import { Button, ButtonGroup, Card, Row, Col } from "react-bootstrap";
-//import BarGraph from "../../assets/stacked-bar.png";
-import EmotionMap from "../../utils/EmotionMap";
+import React from "react";
 import Chart from "react-google-charts";
+
+// Local
+import EmotionMap from "../../utils/EmotionMap";
 
 // Export function
 function ViewActivity({ entries }) {
@@ -21,7 +21,6 @@ function ViewActivity({ entries }) {
 				const factorAverage = EmotionMap.filteredAverage(entries, factor.activity);
 				data.push([factor.label, factorAverage.x, factorAverage.y]);
 			});
-			console.log("data: ", data);
 
 			// vAxis
 			const ticks = [
@@ -45,7 +44,6 @@ function ViewActivity({ entries }) {
 			do {
 				randomFactor = activities[Math.floor(Math.random() * activities.length)].activity;
 				effect = EmotionMap.differential(entries, randomFactor);
-				console.log("effect: ", effect);
 			} while (!effect);
 			return { ...effect, factor: randomFactor };
 		} else {
@@ -83,7 +81,7 @@ function ViewActivity({ entries }) {
 						/>
 					</div>
 
-					<div class="container">
+					<div className="container">
 						<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>
 							<em>
 								Overall you feel <strong>{randomEffect.positivity}</strong> and have <strong>{randomEffect.energy}</strong> energy on days you{" "}

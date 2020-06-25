@@ -1,5 +1,6 @@
 // Global
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 // import BtmLogo from "../assets/HYS-logo-lg.png";
 import moment from "moment";
@@ -44,8 +45,8 @@ function Add({ submitEntry }) {
 
 	return (
 		<main style={{ backgroundColor: "#BFE2FF" }}>
-			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
-				<div class="container" id="entryDiv"></div>
+			<div className="flexbox-container" style={{ backgroundColor: "white" }}>
+				<div className="container" id="entryDiv"></div>
 				{(() => {
 					switch (entryStatus) {
 						case "addEmotion":
@@ -61,16 +62,33 @@ function Add({ submitEntry }) {
 								</div>
 							);
 						case "complete":
-							return <div class="container">
-							<h3 style={{ color: "#FFC300", textAlign: "center" }}>Thank you! You have successfully added a new mood entry.</h3>
-							<br />
-							<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>Let's go look at your trends.</h3>
-						<br />
-								<Button outline color="primary" size="lg" block href="/review">
-						Review your entries
-					</Button>
-					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-							</div>;
+							return (
+								<div className="container">
+									<h3 style={{ color: "#FFC300", textAlign: "center" }}>Thank you! You have successfully added a new mood entry.</h3>
+									<br />
+									<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>Let's go look at your trends.</h3>
+									<br />
+									<Button outline color="primary" size="lg" block as={Link} to="/review">
+										Review your entries
+									</Button>
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+								</div>
+							);
 						default:
 							return <div>oops!</div>;
 					}

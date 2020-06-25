@@ -1,5 +1,6 @@
 // Global
 import React from "react";
+import { Link } from "react-router-dom";
 import "../components/App/app.css";
 import { Button } from "react-bootstrap";
 
@@ -31,8 +32,8 @@ function Home({ entries }) {
 
 	return (
 		<main style={{ backgroundColor: "#BFE2FF" }}>
-			<div class="flexbox-container" style={{ backgroundColor: "white" }}>
-				<div class="container" style={{ clear: "both" }}>
+			<div className="flexbox-container" style={{ backgroundColor: "white" }}>
+				<div className="container" style={{ clear: "both" }}>
 					<h2 style={{ color: "#FFC300", textAlign: "center" }}>
 						<em>Hi! How's Your Spirit today?</em>
 					</h2>
@@ -45,7 +46,7 @@ function Home({ entries }) {
 				</div>
 				<br />
 				{wellbeing ? (
-					<div class="container">
+					<div className="container">
 						<h3 style={{ color: "#FFC300", textAlign: "center" }}>Mood is {wellbeing.mood}</h3>
 						<br />
 						<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>Energy is {wellbeing.energy}</h3>
@@ -55,19 +56,23 @@ function Home({ entries }) {
 					<div></div>
 				)}
 				<br />
-				<div class="container">
-					<Button color="primary" size="lg" block href="/add">
+				<div className="container">
+					<Button color="primary" size="lg" block as={Link} to="/add">
 						New entry
 					</Button>
-					<Button outline color="primary" size="lg" block href="/review">
+					<Button outline color="primary" size="lg" block as={Link} to="/review">
 						Review past entries
 					</Button>
-					<Button color="primary" size="lg" block href="/learn">
+					<Button color="primary" size="lg" block as={Link} to="/learn">
 						Learn More
 					</Button>
 				</div>
 
-				<br /><br /><br /><br /><br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 			</div>
 		</main>
 	);

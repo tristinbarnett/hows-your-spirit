@@ -27,7 +27,7 @@ function ActivityEntry({ submitActivity }) {
 
 	return (
 		<div>
-			<div class="container">
+			<div className="container">
 				<h1 style={{ color: "#BFE2FF", textAlign: "center" }}>
 					<em>Today, did you...</em>
 				</h1>
@@ -60,7 +60,7 @@ function ActivityEntry({ submitActivity }) {
 				</Form>
 			</div>
 
-			<div class="container">
+			<div className="container">
 				<Button variant="primary" size="lg" block value="complete" onClick={handleSubmit}>
 					Submit
 				</Button>

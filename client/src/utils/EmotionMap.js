@@ -147,8 +147,6 @@ const self = (module.exports = {
 			xGrowth += averageTwo.x - averageOne.x;
 			yGrowth += averageTwo.y - averageOne.y;
 		}
-		const xGrowthAverage = xGrowth / (entries.length - 1);
-		const yGrowthAverage = yGrowth / (entries.length - 1);
 		let growthPercentages = self.percentages({
 			x: xGrowth / (entries.length - 1),
 			y: yGrowth / (entries.length - 1),
@@ -159,7 +157,6 @@ const self = (module.exports = {
 	// helper function to get differentials
 	differential: (entries, effectFactor) => {
 		const filtered = entries.filter((entry) => entry.factors.find((factor) => factor.activity === effectFactor && factor.state === true));
-		console.log("filtered: ", filtered);
 		if (!filtered.length) return null;
 
 		// run comparison
@@ -174,7 +171,6 @@ const self = (module.exports = {
 	filteredAverage: (entries, effectFactor) => {
 		// if filtered = 0 ???????
 		const filtered = entries.filter((entry) => entry.factors.find((factor) => factor.activity === effectFactor && factor.state === true));
-		console.log("filtered: ", filtered);
 		const average = self.average(filtered);
 		return average;
 	},
