@@ -92,7 +92,11 @@ function ViewTime({ entries }) {
 					</div>
 				</>
 			) : (
-				<h3>Log a few more entries to see trends!</h3>
+				<div className="container">
+				<h3 style={{ color: "#FFC300", textAlign: "center" }}>You need to log a few more entries to see trends!</h3>
+				<h5 style={{ color: "#BFE2FF", textAlign: "center" }}>Charts are enabled after four entries.</h5>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				</div>
 			)}
 		</div>
 	);
