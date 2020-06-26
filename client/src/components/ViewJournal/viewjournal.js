@@ -40,7 +40,11 @@ function ViewJournal({ entries }) {
 					))}
 				</div>
 			) : (
-				<h3>No Entries to Display</h3>
+				<div className="container">
+				<h3 style={{ color: "#FFC300", textAlign: "center" }}>You haven't added any entries yet!</h3>
+				<h5 style={{ color: "#BFE2FF", textAlign: "center" }}>Journal is enabled after your first entry.</h5>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				</div>
 			)}
 		</div>
 	);
