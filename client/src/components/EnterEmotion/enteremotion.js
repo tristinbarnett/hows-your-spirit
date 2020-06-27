@@ -65,7 +65,7 @@ function EmotionEntry({ submitEmotion }) {
 					})}
 				</div>
 			</div>
-			
+
 			<div className="container">
 				<h1 style={{ color: "#BFE2FF", textAlign: "center" }}>
 					<em>{emotion.feeling}</em>
@@ -88,7 +88,13 @@ function EmotionEntry({ submitEmotion }) {
 							);
 						})}
 					</div>
-					{entryForm.error ? <div className="container" style={{ marginRight: "20px" }}><Alert variant="danger">You must choose a feeling and duration before submitting.</Alert></div> : <></>}
+					{entryForm.error ? (
+						<div className="container" style={{ marginRight: "20px" }}>
+							<Alert variant="danger">You must choose a feeling and duration before submitting.</Alert>
+						</div>
+					) : (
+						<></>
+					)}
 				</Form>
 				<div
 					className="container"
@@ -106,8 +112,6 @@ function EmotionEntry({ submitEmotion }) {
 					</Button>
 				</div>
 			</div>
-			<br />
-			<br />
 		</div>
 	);
 }

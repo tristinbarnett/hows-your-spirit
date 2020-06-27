@@ -11,6 +11,7 @@ function ViewActivity({ entries }) {
 	const activities = EmotionMap.factorsTracked;
 
 	// chart data
+	// will need to refactor for larger data sets to group entries into weeks/months
 	const calculateChartData = () => {
 		if (entries && entries.length > 3) {
 			// data
@@ -96,9 +97,8 @@ function ViewActivity({ entries }) {
 				</>
 			) : (
 				<div className="container">
-				<h3 style={{ color: "#FFC300", textAlign: "center" }}>You need to log a few more entries to see trends!</h3>
-				<h5 style={{ color: "#BFE2FF", textAlign: "center" }}>Charts are enabled after four entries.</h5>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<h3 style={{ color: "#FFC300", textAlign: "center" }}>You need to log a few more entries to see trends!</h3>
+					<h5 style={{ color: "#BFE2FF", textAlign: "center" }}>Charts are enabled after four entries.</h5>
 				</div>
 			)}
 		</div>

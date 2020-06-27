@@ -67,12 +67,6 @@ function Home({ entries }) {
 						Learn More
 					</Button>
 				</div>
-
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
 			</div>
 		</main>
 	);
