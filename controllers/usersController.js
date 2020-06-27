@@ -7,7 +7,7 @@ module.exports = {
       .then(response => {
         console.log("res" + response[0]._id);
         if (req.query.password === response[0].password) {
-          res.json(response[0]._id) //send back id
+          res.json(response[0]._id) 
         } else {
           res.status(422).json(err)
         }
@@ -15,7 +15,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.Users //check if user already exists
+    db.Users 
       .findOne({ email: req.body.email }, function (err, user) {
         if (user) {
           res.status(409).json(err);
@@ -26,17 +26,4 @@ module.exports = {
         }
       });
   }
-  // update: function(req, res) {
-  //   db.Users
-  //     .findOneAndUpdate({ _id: req.params.id }, req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  // remove: function(req, res) {
-  //   db.Users
-  //     .findById({ _id: req.params.id })
-  //     .then(dbModel => dbModel.remove())
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
 };
