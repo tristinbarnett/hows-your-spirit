@@ -8,6 +8,7 @@ import EmotionMap from "../../utils/EmotionMap";
 // Export function
 function ViewTime({ entries }) {
 	// chart data
+	// will need to refactor for larger data sets to group entries into weeks/months
 	const calculateChartData = () => {
 		if (entries && entries.length > 3) {
 			// data
@@ -16,6 +17,7 @@ function ViewTime({ entries }) {
 				const entryAverage = EmotionMap.average([entry]);
 				data.push([entry.date, entryAverage.x, entryAverage.y]);
 			});
+
 			// vAxis
 			const ticks = [
 				{ v: -2, f: "very negative/low" },
@@ -93,9 +95,20 @@ function ViewTime({ entries }) {
 				</>
 			) : (
 				<div className="container">
-				<h3 style={{ color: "#FFC300", textAlign: "center" }}>You need to log a few more entries to see trends!</h3>
-				<h5 style={{ color: "#BFE2FF", textAlign: "center" }}>Charts are enabled after four entries.</h5>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<h3 style={{ color: "#FFC300", textAlign: "center" }}>You need to log a few more entries to see trends!</h3>
+					<h5 style={{ color: "#BFE2FF", textAlign: "center" }}>Charts are enabled after four entries.</h5>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
 				</div>
 			)}
 		</div>

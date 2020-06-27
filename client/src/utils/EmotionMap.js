@@ -99,10 +99,9 @@ const self = (module.exports = {
 		let totalX = 0;
 		let totalY = 0;
 		let totalWeight = 0;
-		// for each entry
+		// for each entry add values from each emotion to total values
 		if (!entries.length) return { x: 0, y: 0 };
 		entries.forEach((entry) => {
-			// add values from each emotion to total values
 			entry.emotions.forEach((emotion) => {
 				totalX += emotion.x * emotion.weight;
 				totalY += emotion.y * emotion.weight;
@@ -120,57 +119,51 @@ const self = (module.exports = {
 	compare: (limitedEntries, allEntries) => {
 		const changedAverage = self.average(limitedEntries);
 		const overallAverage = self.average(allEntries);
-
-		// calculate using "percentage change"
-		const percentChangeX = Math.round(((changedAverage.x - overallAverage.x) * 100) / overallAverage.x);
-		const percentChangeY = Math.round(((changedAverage.y - overallAverage.y) * 100) / overallAverage.y);
-		// return average x and y percentages
-		return { x: percentChangeX, y: percentChangeY };
+		// calculate differential
+		const changeX = (changedAverage.x - overallAverage.x) / Math.abs(overallAverage.x);
+		const changeY = (changedAverage.y - overallAverage.y) / Math.abs(overallAverage.y);
+		// return differentials
+		return { x: changeX, y: changeY };
 	},
 
 	// helper function to get percentages
 	percentages: (emotionObject) => {
-		const positivity = Math.round(emotionObject.x * 50);
+		// calculate percentages
+		const positivity = Math.round(emotionObject.x * 100);
+		const energy = Math.round(emotionObject.y * 100);
+		// choose descriptors for increase versus decrease
 		const percentPositive = positivity >= 0 ? `${positivity}% ${self.moodChange.increase}` : `${Math.abs(positivity)}% ${self.moodChange.decrease}`;
-		const energy = Math.round(emotionObject.y * 50);
-		const percentEnergy = positivity >= 0 ? `${energy}% ${self.energyChange.increase}` : `${Math.abs(energy)}% ${self.energyChange.decrease}`;
+		const percentEnergy = energy >= 0 ? `${energy}% ${self.energyChange.increase}` : `${Math.abs(energy)}% ${self.energyChange.decrease}`;
+		// return percentage change
 		return { positivity: percentPositive, energy: percentEnergy };
 	},
 
 	// helper function to get growth trends
+	// currently simple linear growth pattern
+	// accuracy could be improved for larger data sets by using exponential moving average formula
 	growth: (entries) => {
-		let xGrowth = 0;
-		let yGrowth = 0;
-		for (let i = 1; i < entries.length; i++) {
-			const averageOne = self.average([entries[i - 1]]);
-			const averageTwo = self.average([entries[i]]);
-			xGrowth += averageTwo.x - averageOne.x;
-			yGrowth += averageTwo.y - averageOne.y;
-		}
-		let growthPercentages = self.percentages({
-			x: xGrowth / (entries.length - 1),
-			y: yGrowth / (entries.length - 1),
+		const current = self.average([entries[entries.length - 1]]);
+		const base = self.average([entries[0]]);
+		const growthRate = self.percentages({
+			x: (current.x - base.x / base.x) / entries.length,
+			y: (current.y - base.y / base.y) / entries.length,
 		});
-		return growthPercentages;
+		return growthRate;
 	},
 
 	// helper function to get differentials
 	differential: (entries, effectFactor) => {
 		const filtered = entries.filter((entry) => entry.factors.find((factor) => factor.activity === effectFactor && factor.state === true));
 		if (!filtered.length) return null;
-
-		// run comparison
 		const comparison = self.compare(filtered, entries);
-		// translate numbers to descriptors
-		const positivityEffect = comparison.x >= 0 ? `${comparison.x}% ${self.moodChange.increase}` : `${Math.abs(comparison.x)}% ${self.moodChange.decrease}`;
-		const energyEffect = comparison.y >= 0 ? `${comparison.y}% ${self.energyChange.increase}` : `${Math.abs(comparison.y)}% ${self.energyChange.decrease}`;
-		return { positivity: positivityEffect, energy: energyEffect };
+		const percentChange = self.percentages(comparison);
+		return percentChange;
 	},
 
 	// helper function to get average of a filtered set of entries
 	filteredAverage: (entries, effectFactor) => {
-		// if filtered = 0 ???????
 		const filtered = entries.filter((entry) => entry.factors.find((factor) => factor.activity === effectFactor && factor.state === true));
+		if (!filtered.length) return null;
 		const average = self.average(filtered);
 		return average;
 	},
