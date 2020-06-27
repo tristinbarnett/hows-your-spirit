@@ -38,11 +38,6 @@ function Learn() {
 						Sleep
 					</Button>
 				</div>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
 			</div>
 		</main>
 	);

@@ -71,22 +71,6 @@ function Add({ submitEntry }) {
 									<Button outline color="primary" size="lg" block as={Link} to="/review">
 										Review your entries
 									</Button>
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
-									<br />
 								</div>
 							);
 						default:

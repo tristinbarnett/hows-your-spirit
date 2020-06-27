@@ -63,14 +63,6 @@ function Review({ entries }) {
 						}
 					})()}
 				</div>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
 			</div>
 		</main>
 	);

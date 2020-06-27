@@ -64,9 +64,6 @@ function ActivityEntry({ submitActivity }) {
 				<Button variant="primary" size="lg" block value="complete" onClick={handleSubmit}>
 					Submit
 				</Button>
-				<br />
-				<br />
-				<br />
 			</div>
 		</div>
 	);
