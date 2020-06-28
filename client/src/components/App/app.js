@@ -1,3 +1,5 @@
+/** @format */
+
 // Global
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
@@ -60,36 +62,38 @@ function App() {
 	};
 
 	return (
-		<Router>
-			{!user ? (
-				<Route path="/">
-					<Redirect to="/home" />
-					<Login authUser={handleUser} />
-				</Route>
-			) : (
-				<>
-					<Navbar logoutUser={handleLogout} />
+		<div className="mobile">
+			<Router>
+				{!user ? (
+					<Route path="/">
+						<Redirect to="/home" />
+						<Login authUser={handleUser} />
+					</Route>
+				) : (
+					<>
+						<Navbar logoutUser={handleLogout} />
 
-					<Switch>
-						<Route exact path={["/", "/hows-your-spirit", "/home"]}>
-							<Home entries={userEntries} />
-						</Route>
-						<Route path="/add">
-							<Add submitEntry={submitEntry} />
-						</Route>
-						<Route path="/review">
-							<Review entries={userEntries} />
-						</Route>
-						<Route path="/learn">
-							<Learn />
-						</Route>
-						<Route>
-							<Oops />
-						</Route>
-					</Switch>
-				</>
-			)}
-		</Router>
+						<Switch>
+							<Route exact path={["/", "/hows-your-spirit", "/home"]}>
+								<Home entries={userEntries} />
+							</Route>
+							<Route path="/add">
+								<Add submitEntry={submitEntry} />
+							</Route>
+							<Route path="/review">
+								<Review entries={userEntries} />
+							</Route>
+							<Route path="/learn">
+								<Learn />
+							</Route>
+							<Route>
+								<Oops />
+							</Route>
+						</Switch>
+					</>
+				)}
+			</Router>
+		</div>
 	);
 }
 
