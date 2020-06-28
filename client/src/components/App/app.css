@@ -2,9 +2,10 @@
 
 /* DESIGNED FOR MOBILE VIEWING */
 @media only screen and (min-width: 416px) {
-	body {
-		width: 414px;
-		height: 752px;
+	.mobile {
+		width: 460px;
+		height: 800px;
+		overflow-y: auto;
 		border: solid 6px black;
 		border-radius: 20px;
 		margin-left: auto;
