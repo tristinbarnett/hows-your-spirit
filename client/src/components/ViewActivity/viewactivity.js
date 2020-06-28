@@ -1,3 +1,5 @@
+/** @format */
+
 // Global
 import React from "react";
 import Chart from "react-google-charts";
@@ -20,7 +22,9 @@ function ViewActivity({ entries }) {
 			data.push(["overall", overallAverage.x, overallAverage.y]);
 			activities.forEach((factor) => {
 				const factorAverage = EmotionMap.filteredAverage(entries, factor.activity);
-				data.push([factor.label, factorAverage.x, factorAverage.y]);
+				if (factorAverage) {
+					data.push([factor.label, factorAverage.x, factorAverage.y]);
+				}
 			});
 
 			// vAxis
@@ -85,8 +89,8 @@ function ViewActivity({ entries }) {
 					<div className="container">
 						<h3 style={{ color: "#BFE2FF", textAlign: "center" }}>
 							<em>
-								Overall you feel <strong>{randomEffect.positivity}</strong> and have <strong>{randomEffect.energy}</strong> energy on days you{" "}
-								{randomEffect.factor}!
+								Overall you feel <strong>{randomEffect.positivity}</strong> and have{" "}
+								<strong>{randomEffect.energy}</strong> energy on days you {randomEffect.factor}!
 							</em>
 						</h3>
 
