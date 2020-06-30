@@ -110,6 +110,7 @@ function EmotionEntry({ submitEmotion }) {
 					<Button variant="success" size="lg" block value="completeEmotion" onClick={handleSubmit}>
 						Add emotion, and finish entry
 					</Button>
+					<br/><br/>
 				</div>
 			</div>
 		</div>
