@@ -91,6 +91,7 @@ function ViewTime({ entries }) {
 							<h3 style={{ color: "#007bff" }}>Energy is trending:</h3>
 						</span>
 						<h2 style={{ color: "#BFE2FF" }}>{growthTrend.energy}</h2>
+						<br/><br/>
 					</div>
 				</>
 			) : (
