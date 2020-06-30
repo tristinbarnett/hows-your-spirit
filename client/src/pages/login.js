@@ -80,6 +80,7 @@ function Login({ authUser }) {
 									<br />
 									{loginError === "login" ? <Alert variant="danger">Your information could not be verified. Please try again.</Alert> : <></>}
 									<User name={formName} submitUser={handleSubmitUser} />
+									<br/><br/><br/>
 								</div>
 							);
 						case "signup":
@@ -97,6 +98,7 @@ function Login({ authUser }) {
 									<br />
 									{loginError === "signup" ? <Alert variant="danger">Error. User with this email already exists. Please try logging in.</Alert> : <></>}
 									<User name={formName} submitUser={handleSubmitUser} />
+									<br/><br/><br/>
 								</div>
 							);
 						default:
@@ -116,6 +118,7 @@ function Login({ authUser }) {
 										</h2>
 										<br />
 										<h3 style={{ color: "#FFC300" }}>Marcus Aurelius</h3>
+										<br/><br/>
 									</div>
 								</div>
 							);
