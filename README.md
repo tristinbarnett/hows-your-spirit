@@ -20,6 +20,10 @@ Repository at: https://github.com/tristinbarnett/hows-your-spirit
 
 Deployed live at: https://hows-your-spirit.herokuapp.com/
 
+Sample Log-in:
+email: test@test.com
+password: test
+
 
 ## Known Issues
 
